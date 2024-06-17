@@ -410,13 +410,15 @@ export class AppComponent implements OnInit, OnDestroy {
   isHideChatBoxMessage(message): boolean {
     if (!message) {
       return true;
+    } else {
+      if (!!message.quick_replies) {
+        return true;
+      } else if (!!message.template) {
+        return !!message.original.hide_text_input;
+      } else {
+        return false;
+      }
     }
-
-    if (!message.template) {
-      return false;
-    }
-
-    return !!message.original.hide_text_input;
   }
   isChatBoxVisible({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
     const lastMessage = messages.slice().reverse().find(msg => !!msg.agent);
