@@ -254,6 +254,7 @@ export class AppComponent implements OnInit, OnDestroy {
   hideChat() {
     this.interactionService.hideChat();
   }
+
   listenForEvents(evt) {
     if (evt) {
       switch (evt.type) {
@@ -405,5 +406,22 @@ export class AppComponent implements OnInit, OnDestroy {
     } catch(e) {
       return false
     };
+  }
+  isHideChatBoxMessage(message): boolean {
+    if (!message) {
+      return true;
+    } else {
+      if (!!message.quick_replies) {
+        return !!message.hide_text_input || true; // TODO: @fmoretti - Remove the key `hide_text_input` from the internal sanification mechanism.
+      } else if (!!message.template) {
+        return !!message.original.hide_text_input;
+      } else {
+        return false;
+      }
+    }
+  }
+  isChatBoxVisible({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
+    const lastMessage = messages.slice().reverse().find(msg => !!msg.agent);
+    return isChatVisible && isChatBoxVisible && !this.isHideChatBoxMessage(lastMessage);
   }
 }
