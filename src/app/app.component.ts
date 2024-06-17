@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VvcInteractionService, Dimension, UiState} from '@vivocha/client-interaction-core';
-import {ExtendedMessage} from './types/extended-message';
 import {ChatAreaComponent} from '@vivocha/client-interaction-layout';
 import {Observable, Subscription} from 'rxjs';
 
@@ -255,10 +254,7 @@ export class AppComponent implements OnInit, OnDestroy {
   hideChat() {
     this.interactionService.hideChat();
   }
-  hideTextInput(messages): boolean {
-    const lastMessage: ExtendedMessage = messages.slice().reverse().find(msg => !!msg.agent);
-    return !!lastMessage.hide_text_input ? lastMessage.hide_text_input : false;
-  }
+
   listenForEvents(evt) {
     if (evt) {
       switch (evt.type) {
@@ -410,5 +406,20 @@ export class AppComponent implements OnInit, OnDestroy {
     } catch(e) {
       return false
     };
+  }
+  isHideChatBoxMessage(message): boolean {
+    if (!message) {
+      return true;
+    }
+
+    if (!message.template) {
+      return false;
+    }
+
+    return !!message.original.hide_text_input;
+  }
+  isChatBoxVisible({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
+    const lastMessage = messages.slice().reverse().find(msg => !!msg.agent);
+    return isChatVisible && isChatBoxVisible && !this.isHideChatBoxMessage(lastMessage);
   }
 }

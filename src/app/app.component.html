@@ -97,9 +97,9 @@
           </div>
         </div>
 
-        <div class="vvc-chat-box-area" *ngIf="appState.isChatBoxVisible">
+        <div class="vvc-chat-box-area" *ngIf="isChatBoxVisible(appState)">
           <vvc-chat-area #chat
-                         [readonly]="hideTextInput(appState.messages)"
+                         [readonly]="appState.isSendAreaDisabled"
                          [context]="appState"
                          (onSendText)="sendText($event, appState.showEmojiPanel)"
                          (toggleEmojiPanel)="toggleEmojiPanel()"
