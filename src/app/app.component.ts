@@ -412,7 +412,7 @@ export class AppComponent implements OnInit, OnDestroy {
       return true;
     } else {
       if (!!message.quick_replies) {
-        return !!message.hide_text_input || true; // TODO: @fmoretti - Remove the key `hide_text_input` from the internal sanification mechanism.
+        return !!message.hide_text_input || true; // TODO: @fmoretti - Remove the key `hide_text_input` from the internal purging mechanism.
       } else if (!!message.template) {
         return !!message.original.hide_text_input;
       } else {
