@@ -1,0 +1,17 @@
+<div #tplList class="tpl-list-container">
+  <div *ngFor="let elem of message.elements" class="tpl-element" [ngClass]="{'tpl-has-action':message.buttons}">
+    <div class="vvc-template-inner">
+      <div class="title"
+           [ngClass]="{'tpl-has-default':elem.default_action}"
+           (click)="defaultAction(elem)">{{ elem.title }}</div>
+      <div class="subtitle">{{ elem.subtitle }}</div>
+      <div class="action">
+        <span *ngFor="let b of elem.buttons"
+                (click)="action.emit(b)">{{b.title}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tpl-list-action" *ngFor="let btn of message.buttons">
+  <button (click)="btnClicked(btn)" [disabled]="disabled">{{ btn.title }}</button>
+</div>

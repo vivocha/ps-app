@@ -1,0 +1,11 @@
+<div class="request-message-wrap">
+  <div class="request-message" [innerHtml]=" 'STRINGS.MESSAGES.' + message.text | translate | vvcSanitize:'html' "></div>
+  <div class="request-buttons">
+    <div class="btn">
+      <button (click)="accept.emit(message.text)">{{ 'STRINGS.MESSAGES.REQUEST_ACCEPT' | translate }}</button>
+    </div>
+    <div class="btn">
+      <button (click)="reject.emit(message.text)">{{ 'STRINGS.MESSAGES.REQUEST_REJECT' | translate }}</button>
+    </div>
+  </div>
+</div>

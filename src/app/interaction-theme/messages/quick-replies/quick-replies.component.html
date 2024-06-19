@@ -1,0 +1,22 @@
+<div #qrMsg class="vvc-quick-replies" [ngClass]="{'horizontal': message.quick_replies_orientation !== 'vertical', 'vertical': message.quick_replies_orientation === 'vertical'}">
+  <div class="reply-message">{{ message.body }}</div>
+  <div #qrContainer class="qr-buttons"
+       [scrollLeft]="scrollOffset || 0"
+       [style.scroll-behavior]="transition"
+       [ngClass]="{'centered':showCentered()}"
+                    *ngIf="!message.replied">
+    <div class="tpl-left"
+         [ngClass]="{'hasImg': hasImage()}"
+         *ngIf="showScrollers()" (click)="scrollLeft()"></div>
+
+    <div class="tpl-right"
+         [ngClass]="{'hasImg': hasImage()}"
+         *ngIf="showScrollers()" (click)="scrollRight()"></div>
+
+    <div class="reply" *ngFor="let btn of message.quick_replies" [ngClass]="{ 'img': btn.image_url }">
+      <button (click)="btnClicked(btn)">
+        <img *ngIf="btn.image_url" [src]="btn.image_url"> {{ btn.title }}
+      </button>
+    </div>
+  </div>
+</div>

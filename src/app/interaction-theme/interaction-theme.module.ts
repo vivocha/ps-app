@@ -5,7 +5,6 @@ import {
   TopBarModule,
   ChatModule,
   ChatPanelsModule,
-  MessagesModule,
   ClosePanelModule,
   LoadingPanelModule,
   MinimizedModule,
@@ -15,6 +14,8 @@ import {
   CbnModule,
   InboundModule
 } from '@vivocha/client-interaction-layout';
+
+import { MessagesModule } from './messages/messages.module';
 
 const layoutModules = [
   TopBarModule,

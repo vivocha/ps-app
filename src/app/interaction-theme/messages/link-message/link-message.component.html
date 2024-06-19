@@ -1,0 +1,4 @@
+<div class="system-message message-link"
+     [innerHtml]="'STRINGS.LINK_PUSH' | translate:{ link: message.text }"
+     [title]="message.url"
+     (click)="linkClicked.emit(message.url)"></div>
