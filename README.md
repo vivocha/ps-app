@@ -27,4 +27,4 @@ Please, keep in mind that both the quick replies and the templates need at least
 
 ### Reactive Buttons On Templates
 
-This feature makes buttons on templates reactive to trace the first clicked and to make them unclickable after the first user choice in the same group just like quick replies do.
+This feature makes buttons on both generic and list templates reactive to trace the first clicked and to make them unclickable after the first user choice in the same group just like quick replies do.

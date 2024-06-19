@@ -1,0 +1,29 @@
+<div #tplGen class="tpl-navigation">
+
+  <div class="tpl-left" *ngIf="message.elements.length > 1 && scrollOffset > 0" (click)="scrollLeft()"></div>
+
+  <div class="tpl-right" *ngIf="message.elements.length > 1 && scrollOffset <= lastCarouselElem" (click)="scrollRight()"></div>
+
+  <div #carousel
+       class="tpl-container"
+       [scrollLeft]="scrollOffset || 0"
+       [style.scroll-behavior]="transition"
+       [ngClass]="{'carousel' : (message.elements.length > 1) }"
+       (swipeleft)="swipe($event.type)" 
+       (swiperight)="swipe($event.type)">
+
+    <div *ngFor="let elem of message.elements" class="tpl-element" [ngClass]="{'carousel' : (message.elements.length > 1) }">
+      <div class="vvc-template-inner">
+        <div *ngIf="elem.image_url" class="cover" [style.background-image]="'url(' + elem.image_url + ')'"></div>
+        <div class="title"
+             [ngClass]="{'tpl-has-default':elem.default_action}"
+             (click)="defaultAction(elem)">{{ elem.title }}</div>
+        <div class="subtitle">{{ elem.subtitle }}</div>
+      </div>
+      <div class="vvc-template-action" *ngFor="let btn of elem.buttons">
+        <button (click)="btnClicked(btn)" [disabled]="disabled">{{ btn.title }}</button>
+      </div>
+    </div>
+  </div>
+
+</div>
