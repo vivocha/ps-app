@@ -100,7 +100,9 @@ export class TemplateGenericComponent implements OnInit, OnDestroy {
   }
 
   btnClicked(btn): any {
-    this.disabled = true;
+    if (btn.type !== 'web_url') {
+      this.disabled = true;
+    }
     this.action.emit(btn);
   }
 

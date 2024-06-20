@@ -21,7 +21,12 @@
         <div class="subtitle">{{ elem.subtitle }}</div>
       </div>
       <div class="vvc-template-action" *ngFor="let btn of elem.buttons">
-        <button (click)="btnClicked(btn)" [disabled]="disabled">{{ btn.title }}</button>
+        <div *ngIf="btn.type === 'web_url'">
+          <button (click)="btnClicked(btn)">{{ btn.title }}</button>
+        </div>
+        <div *ngIf="btn.type !== 'web_url'">
+          <button (click)="btnClicked(btn)" [disabled]="disabled">{{ btn.title }}</button>
+        </div>
       </div>
     </div>
   </div>
