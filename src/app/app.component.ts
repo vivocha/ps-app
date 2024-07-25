@@ -101,6 +101,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.appState$ = this.interactionService.getState();
     this.interactionService.init().subscribe(context => this.setInitialDimensions(context));
     this.interactionService.events().subscribe(evt => this.listenForEvents(evt));
+    this.loadActiveAgent();  // Load the active agent details (if any).
+    this.registerCustomActions(); // Register custom actions provided by either a bot or an interaction script.
 
     // listen to uiState changes in order to update the local reference used in services
     this.appUiStateSub = this.appState$.subscribe(uiState => {
@@ -130,6 +132,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   closeApp() {
     this.interactionService.closeApp();
+    sessionStorage.removeItem('agent'); // Remove the active agent details on app close.
   }
   closeCbn() {
     this.interactionService.closeContact(this.closeDimensions);
@@ -423,5 +426,58 @@ export class AppComponent implements OnInit, OnDestroy {
   isChatBoxVisible({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
     const lastMessage = messages.slice().reverse().find(msg => !!msg.agent);
     return isChatVisible && isChatBoxVisible && !this.isHideChatBoxMessage(lastMessage);
+  }
+  /**
+   * Load the active agent details on page refresh and/or app maximize (if any).
+   */
+  loadActiveAgent() {
+    if (!!sessionStorage.getItem('agent')) {
+      const agent = JSON.parse(sessionStorage.getItem('agent'));
+      if (!!agent.avatar) {
+        this.interactionService.setTopBarAvatar(agent.avatar);
+      }
+      if (!!agent.nickname) {
+        this.interactionService.setTopBarTitle(agent.nickname);
+      }
+      if (!!agent.status) {
+        this.interactionService.setTopBarSubtitle(agent.status);
+      }
+    }
+  }
+  /**
+   * Register the `action` event for subscribing to custom actions based on the `action_code` key.
+   */
+  registerCustomActions() {
+    this.interactionService
+      .registerCustomAction({ id: 'action' })
+      .subscribe(action_code => {
+        if (!!action_code) {
+          switch (action_code) {
+            case 'setAgent': {
+              window.addEventListener('message', event => {
+                const agent = event.data;
+                let item: any = {};
+                if (!!agent.avatar) {
+                  this.interactionService.setTopBarAvatar(agent.avatar);
+                  item = { ...item, avatar: agent.avatar };
+                }
+                if (!!agent.nickname) {
+                  this.interactionService.setTopBarTitle(agent.nickname);
+                  item = { ...item, nickname: agent.nickname };
+                }
+                if (!!agent.status) {
+                  this.interactionService.setTopBarSubtitle(agent.status);
+                  item = { ...item, status: agent.status };
+                }
+                sessionStorage.setItem('agent', JSON.stringify(item));
+              }, false);
+              break;
+            }
+            default: {
+              console.info('No case found.');
+            }
+          }
+        }
+      });
   }
 }
