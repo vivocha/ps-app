@@ -1,0 +1,12 @@
+<div (click)="expand.emit()">
+  <img class='agent-img'
+       *ngIf="agent.avatar || context && context.agent && context.agent.avatar"
+       [src]="agent.avatar || context && context.agent && context.agent.avatar">
+  <img class='agent-img agent-default'
+       *ngIf="!context || !context.agent || !context.agent.avatar">
+  <div class='badge' *ngIf="context.notRead && context.notRead > 0">{{ context.notRead }}</div>
+
+  <audio autoplay
+         *ngIf="context.voiceRxStream"
+         [srcObject]="context.voiceRxStream"></audio>
+</div>

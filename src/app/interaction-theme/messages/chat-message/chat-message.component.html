@@ -1,7 +1,7 @@
 <div #chatMsg class="chat-message" [ngClass]="{ 'agent': message.isAgent, 'visitor': !message.isAgent, 'bot': message.isAgent && message.agent.is_bot, 'real_agent': message.isAgent && !message.agent.is_bot }">
   <div class="message-spacer" *ngIf="!message.isAgent"></div>
-  <div class="message-avatar" *ngIf="message.isAgent && (message.avatar || message.agent && message.agent.avatar)" [style.visibility]="message.isFirst ? 'visible' : 'hidden'">
-    <img [src]="message.avatar || message.agent.avatar">
+  <div class="message-avatar" *ngIf="message.isAgent && (agent.avatar || message.avatar || message.agent && message.agent.avatar)" [style.visibility]="message.isFirst ? 'visible' : 'hidden'">
+    <img [src]="agent.avatar || message.avatar || message.agent.avatar">
   </div>
   <div class="message"
        [ngClass]="{ 'arrow' : message.isFirst }">

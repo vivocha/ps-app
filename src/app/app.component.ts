@@ -95,6 +95,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public selector: string | null = null;
 
+  public agent: any = {};
+
   constructor(private interactionService: VvcInteractionService) {}
 
   ngOnInit() {
@@ -434,13 +436,13 @@ export class AppComponent implements OnInit, OnDestroy {
     if (!!sessionStorage.getItem('agent')) {
       const agent = JSON.parse(sessionStorage.getItem('agent'));
       if (!!agent.avatar) {
-        this.interactionService.setTopBarAvatar(agent.avatar);
+        this.agent.avatar = agent.avatar;
       }
       if (!!agent.nickname) {
-        this.interactionService.setTopBarTitle(agent.nickname);
+        this.agent.nickname = agent.nickname;
       }
       if (!!agent.status) {
-        this.interactionService.setTopBarSubtitle(agent.status);
+        this.agent.status = agent.status;
       }
     }
   }
@@ -455,22 +457,22 @@ export class AppComponent implements OnInit, OnDestroy {
           switch (action_code) {
             case 'setAgent': {
               window.addEventListener('message', event => {
-                const agent = event.data;
-                let item: any = {};
-                if (!!agent.avatar) {
-                  this.interactionService.setTopBarAvatar(agent.avatar);
-                  item = { ...item, avatar: agent.avatar };
+                if (!!event.data && (event.data.avatar || event.data.nickname || event.data.status)) {
+                  const agent = event.data;
+                  let item: any = {};
+                  if (!!agent.avatar) {
+                    Object.assign(item, { avatar: agent.avatar });
+                  }
+                  if (!!agent.nickname) {
+                    Object.assign(item, { nickname: agent.nickname });
+                  }
+                  if (!!agent.status) {
+                    Object.assign(item, { status: agent.status });
+                  }
+                  sessionStorage.setItem('agent', JSON.stringify(item));
+                  this.loadActiveAgent();
                 }
-                if (!!agent.nickname) {
-                  this.interactionService.setTopBarTitle(agent.nickname);
-                  item = { ...item, nickname: agent.nickname };
-                }
-                if (!!agent.status) {
-                  this.interactionService.setTopBarSubtitle(agent.status);
-                  item = { ...item, status: agent.status };
-                }
-                sessionStorage.setItem('agent', JSON.stringify(item));
-              }, false);
+              }, true);
               break;
             }
             default: {

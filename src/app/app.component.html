@@ -23,6 +23,7 @@
     <div id="vvc-normal-container">
 
       <vvc-top-bar [context]="appState"
+                   [agent]="agent"
                    *ngIf="!appState.cbnMode && !appState.inboundMode"
                    (onMinimize)="minimizeWidget()"
                    (onMaximize)="setFullScreen()"
@@ -76,6 +77,7 @@
             <vvc-link-message [message]="m" *ngIf="m.type === 'link'"
                               (linkClicked)="openAttachment($event, true)"></vvc-link-message>
             <vvc-chat-message [message]="m" *ngIf="m.type === 'chat'"
+                              [agent]="agent"
                               (read)="markRead($event)"
                               (resend)="sendFailed($event)"
                               (showDoc)="openAttachment($event, true)"></vvc-chat-message>
@@ -128,6 +130,7 @@
   <div id="vvc-minimized-layout" *ngIf="appState.isMinimized">
     <vvc-minimized *ngIf="!appState.cbnMode"
                    [context]="appState"
+                   [agent]="agent"
                    (expand)="expandWidget(appState.isFullScreen)"></vvc-minimized>
     <vvc-cbn-minimized id="vvc-minimized-cbn"
                        [ngClass]="{ 'mobile': appState.isMobile }"

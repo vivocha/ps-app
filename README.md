@@ -25,7 +25,7 @@ This feature hides the text input if no free text is allowed. It’s enabled by 
 }
 ```
 
-Please, keep in mind that both the quick replies and the templates need at least a button with a valid payload to continue the active conversation or users have no more chance to interact.
+Please, keep in mind that both the quick replies and the templates need at least a button with a valid payload to continue the active conversation or users have no more chances to interact.
 
 ### Reactive Buttons On Templates
 

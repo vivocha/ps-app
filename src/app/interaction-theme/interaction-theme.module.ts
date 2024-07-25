@@ -2,12 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  TopBarModule,
   ChatModule,
   ChatPanelsModule,
   ClosePanelModule,
   LoadingPanelModule,
-  MinimizedModule,
   DataCollectionModule,
   MultimediaModule,
   QueueModule,
@@ -15,7 +13,9 @@ import {
   InboundModule
 } from '@vivocha/client-interaction-layout';
 
+import { TopBarModule } from './top-bar/top-bar.module';
 import { MessagesModule } from './messages/messages.module';
+import { MinimizedModule } from './minimized/minimized.module';
 
 const layoutModules = [
   TopBarModule,
