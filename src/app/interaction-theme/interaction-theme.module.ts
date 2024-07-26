@@ -5,10 +5,10 @@ import {
   ChatModule,
   ChatPanelsModule,
   ClosePanelModule,
+  QueueModule,
   LoadingPanelModule,
   DataCollectionModule,
   MultimediaModule,
-  QueueModule,
   CbnModule,
   InboundModule
 } from '@vivocha/client-interaction-layout';

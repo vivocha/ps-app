@@ -3,6 +3,7 @@
 - [Features](#features)
   - [Hide Text Input](#hide-text-input)
   - [Reactive Buttons On Templates](#reactive-buttons-on-templates)
+  - [Adobe After Effects Support](#adobe-after-effects-support)
   - [Custom Actions](#custom-actions)
     - [Set Agent](#set-agent)
 
@@ -30,6 +31,12 @@ Please, keep in mind that both the quick replies and the templates need at least
 ### Reactive Buttons On Templates
 
 This feature makes buttons on both generic and list templates reactive to run the action of the first clicked and to make them unclickable after the first user choice in the same group pretty like the way quick replies do.
+
+### Adobe After Effects Support
+
+This feature has been developed for **lastminute.com** and adds support for Adobe After Effects animation exported in JSON via [Lottie](https://airbnb.io/lottie/#/web): a library created and maintained by Airbnb.
+
+Please, compile the lastminute.com branch to get it working as expected by the customer.
 
 
 ### Custom Actions
