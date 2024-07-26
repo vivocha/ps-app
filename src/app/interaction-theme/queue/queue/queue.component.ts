@@ -14,7 +14,7 @@ export class QueueComponent {
   options: AnimationOptions = {
     renderer: 'svg',
     loop: true,
-    path: './assets/static/loading.json',
+    path: 'assets/static/loading.json',
   };
 
   animationCreated(animationItem: AnimationItem): void {
