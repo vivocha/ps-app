@@ -3,6 +3,7 @@
 - [Features](#features)
   - [Hide Text Input](#hide-text-input)
   - [Reactive Buttons On Templates](#reactive-buttons-on-templates)
+  - [Adobe After Effects Support](#adobe-after-effecs-support)
   - [Custom Actions](#custom-actions)
     - [Set Agent](#set-agent)
 
