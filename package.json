@@ -73,6 +73,7 @@
     "@angular/forms": "~8.2.14",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
+    "@lottiefiles/dotlottie-web": "^0.29.2",
     "@ngrx/store": "^8.5.1",
     "@ngrx/store-devtools": "^8.5.1",
     "@ngx-translate/core": "^11.0.1",

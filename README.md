@@ -3,7 +3,6 @@
 - [Features](#features)
   - [Hide Text Input](#hide-text-input)
   - [Reactive Buttons On Templates](#reactive-buttons-on-templates)
-  - [Adobe After Effects Support](#adobe-after-effects-support)
   - [Custom Actions](#custom-actions)
     - [Set Agent](#set-agent)
 
@@ -34,10 +33,9 @@ This feature makes buttons on both generic and list templates reactive to run th
 
 ### Adobe After Effects Support
 
-This feature has been developed for **lastminute.com** and adds support for Adobe After Effects animation exported in JSON via [Lottie](https://airbnb.io/lottie/#/web): a library created and maintained by Airbnb.
+This feature has been developed for lastminute.com and adds support for Adobe After Effects animation exported in JSON via Lottie: a library created and maintained by Airbnb.
 
-Please, compile the lastminute.com branch to get it working as expected by the customer.
-
+Please, compile the lastminute branch to get it working as expected by the customer.
 
 ### Custom Actions
 
@@ -58,9 +56,9 @@ You should send a message like the following.
   action_code: 'setAgent',
   args: [
     {
-      avatar: '',
-      nickname: '',
-      status: ''
+      avatar: '/path/to/fmoretti/avatar.png',
+      nickname: 'Federico Moretti',
+      status: 'Online'
     }
   ]
 } as ActionMessage
