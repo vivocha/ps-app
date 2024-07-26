@@ -73,7 +73,6 @@
     "@angular/forms": "~8.2.14",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
-    "@lottiefiles/dotlottie-web": "^0.29.2",
     "@ngrx/store": "^8.5.1",
     "@ngrx/store-devtools": "^8.5.1",
     "@ngx-translate/core": "^11.0.1",
@@ -86,8 +85,8 @@
     "core-js": "3.3.3",
     "element-closest-polyfill": "^1.0.2",
     "hammerjs": "^2.0.8",
-    "lottie-web": "^5.12.2",
-    "ngx-lottie": "^12.0.0",
+    "lottie-web": "^5.8.1",
+    "ngx-lottie": "^7.0.4",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

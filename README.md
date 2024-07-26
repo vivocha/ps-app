@@ -36,7 +36,19 @@ This feature makes buttons on both generic and list templates reactive to run th
 
 This feature has been developed for lastminute.com and adds support for Adobe After Effects animation exported in JSON via Lottie: a library created and maintained by Airbnb.
 
-Please, compile the lastminute branch to get it working as expected by the customer.
+Please, compile the [lastminute](https://github.com/vivocha/ps-app/tree/lastminute) branch to get it working as expected by the customer. You’ll need to manually add:
+
+```javascript
+<script src="lottie-web-es2015.js" type="module"></script><script src="lottie-web-es5.js" nomodule defer></script>
+```
+
+inline in `./dist/assets/index.html` and:
+
+```javascript
+</script><script src="lottie-web.js" defer></script>
+```
+
+inline in `./dist/assets/ie/index.html` before pushing to Vivocha.
 
 ### Custom Actions
 
