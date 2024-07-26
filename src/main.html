@@ -39,13 +39,15 @@
         { src: "assets/runtime-es2015.js", attrs: { type: "module" } },
         { src: "assets/polyfills-es2015.js", attrs: { type: "module" } },
         { src: "assets/vendor-es2015.js", attrs: { type: "module" } },
-        { src: "assets/main-es2015.js", attrs: { type: "module" } }
+        { src: "assets/main-es2015.js", attrs: { type: "module" } },
+        { src: "assets/lottie-web-es2015.js", attrs: { type: "module" } }
       ];
       var s_ie = [
         { src: "assets/ie/runtime.js", attrs: { defer: "" } },
         { src: "assets/ie/polyfills.js", attrs: { defer: "" } },
         { src: "assets/ie/vendor.js", attrs: { defer: "" } },
-        { src: "assets/ie/main.js", attrs: { defer: "" } }
+        { src: "assets/ie/main.js", attrs: { defer: "" } },
+        { src: "assets/ie/lottie-web.js", attrs: { defer: "" } }
       ];
       var scripts = !(!!window.MSInputMethodContext && !!document.documentMode) ? s : s_ie;
       var busId, acct, host;

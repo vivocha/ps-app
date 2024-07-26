@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { InteractionThemeModule } from './interaction-theme/interaction-theme.module';
 import { InteractionCoreDebugModule } from '@vivocha/client-interaction-core';
 
-
 @NgModule({
   declarations: [
     AppComponent

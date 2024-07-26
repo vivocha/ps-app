@@ -1,13 +1,9 @@
 <div class="queue-view">
   <div *ngIf="!context.hasError">
-    <div class="queue-message animated fadeInUp" [innerHtml]=" 'STRINGS.QUEUE.CONNECTING' | translate ">
-    </div>
     <div class="queue-loading animated fadeInUp">
       <div class="inner-loading-panel">
         <div class="loading-container">
-          <div class="progress-bar">
-            <div class="loaded"></div>
-          </div>
+          <ng-lottie [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
         </div>
       </div>
     </div>
