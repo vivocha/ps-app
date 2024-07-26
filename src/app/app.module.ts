@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { InteractionThemeModule } from './interaction-theme/interaction-theme.module';
 import { InteractionCoreDebugModule } from '@vivocha/client-interaction-core';
-import { provideCacheableAnimationLoader, provideLottieOptions } from 'ngx-lottie';
-import player from 'lottie-web';
 
 
 @NgModule({
@@ -15,10 +13,6 @@ import player from 'lottie-web';
     BrowserModule,
     InteractionCoreDebugModule,
     InteractionThemeModule
-  ],
-  providers: [
-    provideLottieOptions({ player: () => player }),
-    provideCacheableAnimationLoader()
   ],
   bootstrap: [AppComponent]
 })
