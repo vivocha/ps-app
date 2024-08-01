@@ -5,7 +5,6 @@ import {
   ChatModule,
   ChatPanelsModule,
   ClosePanelModule,
-  QueueModule,
   LoadingPanelModule,
   DataCollectionModule,
   MultimediaModule,
@@ -16,6 +15,7 @@ import {
 import { TopBarModule } from './top-bar/top-bar.module';
 import { MessagesModule } from './messages/messages.module';
 import { MinimizedModule } from './minimized/minimized.module';
+import { QueueModule } from './queue/queue.module';
 
 const layoutModules = [
   TopBarModule,

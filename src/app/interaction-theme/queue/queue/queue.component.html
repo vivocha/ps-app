@@ -1,0 +1,17 @@
+<div class="queue-view">
+  <div *ngIf="!context.hasError">
+    <div class="queue-loading animated fadeInUp">
+      <div class="inner-loading-panel">
+        <div class="loading-container">
+          <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" width="150" height="150"></ng-lottie>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="context.hasError">
+    <div *ngIf="!context.contactCreationFailed && !context.webleadSent" class="queue-message animated fadeInUp" [innerHtml]=" 'STRINGS.QUEUE.DISSUASION' | translate "></div>
+    <div *ngIf="!context.contactCreationFailed && context.webleadSent" class="queue-message animated fadeInUp" [innerHtml]=" 'STRINGS.QUEUE.WEBLEAD_SENT' | translate "></div>
+    <div *ngIf="context.contactCreationFailed && !context.contactCreationNoAgents" class="queue-message animated fadeInUp" [innerHtml]=" 'STRINGS.QUEUE.CONTACT_FAILED' | translate "></div>
+    <div *ngIf="context.contactCreationFailed && context.contactCreationNoAgents" class="queue-message animated fadeInUp" [innerHtml]=" 'STRINGS.QUEUE.NO_AGENTS' | translate "></div>
+  </div>
+</div>
