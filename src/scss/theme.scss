@@ -1283,6 +1283,13 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
       font-weight: 300;
       overflow: hidden;
       text-overflow: ellipsis;
+      .timestamp {
+        font-size: $timeSize;
+        font-weight: 300;
+        color: $timeColor;
+        padding-top: 3px;
+        text-align: right;
+      }
       &.attachment{
         white-space: normal;
       }

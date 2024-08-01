@@ -6,11 +6,13 @@
   <div class="message"
        [ngClass]="{ 'arrow' : message.isFirst }">
     <div *ngIf="!message.meta && (!message.isAgent || (message.isAgent && !message.agent.is_bot))"
-          class="bubble"
-          [innerHTML]="message.text | vvcLink:{sanitizeHtml: true}"></div>
+          class="bubble">
+          {{ message.text | vvcLink:{sanitizeHtml: true} }}
+          <div class="timestamp" *ngIf="message.isLast">{{ message.time }}</div></div>
     <div *ngIf="!message.meta && message.isAgent && message.agent.is_bot"
-          class="bubble"
-          [innerHTML]="message.text | vvcLink"></div>
+          class="bubble">
+          {{ message.text | vvcLink }}
+          <div class="timestamp" *ngIf="message.isLast">{{ message.time }}</div></div>
     <div *ngIf="message.meta" class="bubble attachment" (click)="openDocument(message.meta.url)">
       <div class="attachment-img" *ngIf="message.meta.mimetype.indexOf('image/') !== -1">
         <img [src]="message.meta.url">
@@ -39,7 +41,6 @@
         <span title="{{ 'STRINGS.TOOLTIP.MSG_RECEIVED' | translate:message.tooltipData}}" *ngIf="!message.isAgent && message.ack && !message.read"><svg height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="m0 0h16v16h-16z"/><g fill="#666" transform="translate(1 4)"><path d="m8.53240548.28116753c.29849321-.33630114.82445569-.37663004 1.17477007-.09007713.31139055.25471371.37918205.68196672.18076123 1.00996226l-.0869307.11781478-5.68048261 6.39998731c-.29253479.32958801-.79514582.36995316-1.13883325.11815649l-.12071254-.10812458-2.65285073-2.89031685c-.30426455-.33150035-.27098776-.83702296.0743258-1.12911635.30694538-.25963857.75711923-.26324628 1.06706313-.02801929l.10910206.09937191 2.01642117 2.19680114z"/><path d="m14.7071756.1910904c.3113905.25471371.379182.68196672.1807612 1.00996226l-.0869307.11781478-5.68048263 6.39998731c-.29253479.32958801-.79514582.36995316-1.13883325.11815649l-.12071254-.10812458-1.22694885-1.3368832 1.093-1.23.74801028.81560376 5.05736639-5.69643969c.2984932-.33630114.8244557-.37663004 1.1747701-.09007713zm-8.35765972 3.49034377.10910206.09937191.58841089.64019738-1.092 1.231-.74690188-.81343365c-.15213227-.16575018-.21987921-.37500592-.20642889-.57933579l.64552638-.7294867c.24154924-.05291416.50138138-.00079065.70229144.15168685z"/></g></g></svg></span>
         <span title="{{ 'STRINGS.TOOLTIP.MSG_READ' | translate:message.tooltipData}}" *ngIf="!message.isAgent && message.ack && message.read"><svg height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="a-msg-acks-read" d="m8.53240548.28116753c.29849321-.33630114.82445569-.37663004 1.17477007-.09007713.31139055.25471371.37918205.68196672.18076123 1.00996226l-.0869307.11781478-5.68048261 6.39998731c-.29253479.32958801-.79514582.36995316-1.13883325.11815649l-.12071254-.10812458-2.65285073-2.89031685c-.30426455-.33150035-.27098776-.83702296.0743258-1.12911635.30694538-.25963857.75711923-.26324628 1.06706313-.02801929l.10910206.09937191 2.01642117 2.19680114z"/></defs><g fill="none" fill-rule="evenodd"><path d="m0 0h16v16h-16z"/><g transform="translate(1 4)"><path d="m14.7071756.1910904c.3113905.25471371.379182.68196672.1807612 1.00996226l-.0869307.11781478-5.68048263 6.39998731c-.29253479.32958801-.79514582.36995316-1.13883325.11815649l-.12071254-.10812458-1.22694885-1.3368832 1.093-1.23.74801028.81560376 5.05736639-5.69643969c.2984932-.33630114.8244557-.37663004 1.1747701-.09007713zm-8.35765972 3.49034377.10910206.09937191.58841089.64019738-1.092 1.231-.74690188-.81343365c-.15213227-.16575018-.21987921-.37500592-.20642889-.57933579l.64552638-.7294867c.24154924-.05291416.50138138-.00079065.70229144.15168685z" fill="#5f9f18"/><use fill="#f3f3f3" xlink:href="#a-msg-acks-read"/><use fill="#5f9f18" xlink:href="#a-msg-acks-read"/></g></g></svg></span>
       </span>
-       {{ message.time }}
     </div>
   </div>
   <div class="message-avatar" *ngIf="!message.isAgent" [style.visibility]="message.isFirst ? 'visible' : 'hidden'">
