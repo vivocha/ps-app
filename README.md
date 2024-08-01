@@ -74,14 +74,16 @@ You should set an event like the following.
 ```javascript
 try {
   vivocha.contact.on('action', async (action_code, args) => {
-    if (action_code === 'setAgent') {
-      const message = {
-        avatar: args[0]['avatar'],
-        nickname: args[0]['nickname'],
-        status: args[0]['status']
-      };
-      const target = document.querySelector('#vvc-interaction-app').contentWindow;
-      target.postMessage(message, '*');
+    switch (action_code) {
+      case 'setAgent':
+        const message = {
+          avatar: args[0]['avatar'],
+          nickname: args[0]['nickname'],
+          status: args[0]['status']
+        };
+        const target = document.querySelector('#vvc-interaction-app').contentWindow;
+        target.postMessage(message, '*');
+        break;
     }
   });
 }
