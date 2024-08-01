@@ -52,22 +52,9 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
     align-items: center;
     height: 100%;
     .loading-container{
-      width: 200px;
-      height: 5px;
+      width: 150px;
+      height: 150px;
       margin: auto;
-
-      .progress-bar{
-        height:2px;
-        width:200px;
-        background: rgba($loadingBarColor,0.6);
-        .loaded{
-          height:100%;
-          width:100%;
-          animation:2s linear infinite loading;
-          transform-origin:0%;
-          background: $loadingBarColor;
-        }
-      }
     }
   }
 }
@@ -1283,6 +1270,13 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
       font-weight: 300;
       overflow: hidden;
       text-overflow: ellipsis;
+      .timestamp {
+        font-size: $timeSize;
+        font-weight: 300;
+        color: $timeColor;
+        padding-top: 3px;
+        text-align: right;
+      }
       &.attachment{
         white-space: normal;
       }
