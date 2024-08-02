@@ -443,13 +443,13 @@ export class AppComponent implements OnInit, OnDestroy {
             case 'setAgent': {
               if (!!message.args && (message.args[0].avatar || message.args[0].nickname || message.args[0].status)) {;
                 if (!!message.args[0].avatar) {
-                  this.agent.avatar = message.args[0].avatar;
+                  this.agent.avatar = message.args[0].avatar === 0 ? undefined : message.args[0].avatar;
                 }
                 if (!!message.args[0].nickname) {
-                  this.agent.nickname = message.args[0].nickname;
+                  this.agent.avatar = message.args[0].nickname === 0 ? undefined : message.args[0].nickname;
                 }
                 if (!!message.args[0].status) {
-                  this.agent.status = message.args[0].status;
+                  this.agent.avatar = message.args[0].status === 0 ? undefined : message.args[0].status;
                 }
               }
               break;
