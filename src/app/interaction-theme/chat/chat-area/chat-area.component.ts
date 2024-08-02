@@ -10,6 +10,7 @@ export class ChatAreaComponent {
   @ViewChild('box', {static: true}) box: ElementRef;
   @Input() context;
   @Input() readonly;
+  @Input() showUploadIcon;
   @Output() onSendText = new EventEmitter();
   @Output() toggleEmojiPanel = new EventEmitter();
   @Output() showUploadPanel = new EventEmitter();

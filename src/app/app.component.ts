@@ -97,7 +97,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public selector: string | null = null;
 
   public agent: any = {}; // Set agent details when using Rocket.Chat.
-  public uploadIcon: boolean; // Set the upload icon visibility.
+  public uploadIcon: boolean = false; // Set the upload icon visibility, default to `false`.
 
   constructor(private interactionService: VvcInteractionService) {}
 
@@ -454,8 +454,9 @@ export class AppComponent implements OnInit, OnDestroy {
               }
               break;
             }
-            case 'showUploadIcon':
+            case 'showUploadIcon': {
               this.uploadIcon = message.args[0].show;
+            }
             default: {
               console.info('No case found.');
             }

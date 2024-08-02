@@ -7,7 +7,7 @@
            (keyup)="isWriting()"
            (keyup.enter)="sendText(box.value);box.value=''">
   </div>
-  <div *ngIf="canShowUpload()"
+  <div *ngIf="showUploadIcon && canShowUpload()"
        (click)="showUpload()"
        class="upload-handler">
     <i class="icon icon-vvc-clip"></i>

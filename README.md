@@ -65,3 +65,41 @@ You should send a message like the following.
 All of the keys are of type `string` and the `avatar` key must be a valid image URL.
 
 #### Upload Icon
+
+This custom action has been developed for **Smile.CX Gaia** to let it choose wether showing the upload icon or not.
+
+You should send a message like the following…
+
+```javascript
+response.messages = [
+  {
+    code: 'message',
+    type: 'action',
+    action_code: 'showUploadIcon',
+    args: [
+      {
+        show: true
+      }
+    ]
+  } as ActionMessage
+];
+```
+
+…to enable the icon (by default it’s hidden) and a message like the following…
+
+```javascript
+response.messages = [
+  {
+    code: 'message',
+    type: 'action',
+    action_code: 'showUploadIcon',
+    args: [
+      {
+        show: false
+      }
+    ]
+  } as ActionMessage
+];
+```
+
+…to hide the icon once again.
