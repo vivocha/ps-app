@@ -180,6 +180,15 @@
       ]
     },
     {
+      "id": "multiAttachment",
+      "nameId": "META.VARIABLES.SEND_AREA.MULTI_ATTACHMENT",
+      "defaultValue": false,
+      "type": "boolean",
+      "categoryIds": [
+        "General_FilesAndEmoji"
+      ]
+    },
+    {
       "id": "showAvatar",
       "nameId": "META.VARIABLES.TOPBAR.SHOW_AVATAR",
       "defaultValue": false,
