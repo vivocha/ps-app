@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  ChatModule,
   ChatPanelsModule,
   ClosePanelModule,
   LoadingPanelModule,
@@ -13,6 +12,7 @@ import {
 } from '@vivocha/client-interaction-layout';
 
 import { TopBarModule } from './top-bar/top-bar.module';
+import {   ChatModule } from './chat/chat.module';
 import { MessagesModule } from './messages/messages.module';
 import { MinimizedModule } from './minimized/minimized.module';
 import { QueueModule } from './queue/queue.module';
