@@ -44,10 +44,6 @@ Please, compile the [lastminute](https://github.com/vivocha/ps-app/tree/lastminu
 
 This custom action has been developed for **Smile.CX Gaia** to let [Rocket.Chat](https://www.rocket.chat/) change the agent details via Vivocha Bot SDK.
 
-The action itself consist of two sides:
-
-1. A message of type `action` from a bot built with the Vivocha Bot SDK.
-
 You should send a message like the following.
 
 ```javascript
@@ -66,30 +62,3 @@ You should send a message like the following.
 ```
 
 All of the keys are of type `string` and the `avatar` key must be a valid image URL.
-
-2. A `postMessage` from a `contact-established` event handler in the Vivocha Campaign Builder
-
-You should set an event like the following.
-
-```javascript
-try {
-  vivocha.contact.on('action', async (action_code, args) => {
-    switch (action_code) {
-      case 'setAgent':
-        const message = {
-          avatar: args[0]['avatar'],
-          nickname: args[0]['nickname'],
-          status: args[0]['status']
-        };
-        const target = document.querySelector('#vvc-interaction-app').contentWindow;
-        target.postMessage(message, '*');
-        break;
-    }
-  });
-}
-catch (err) {
-  console.error(err);
-}
-```
-
-Both are mandatory.
