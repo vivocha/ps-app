@@ -102,6 +102,7 @@
           <vvc-chat-area #chat
                          [readonly]="appState.isSendAreaDisabled"
                          [context]="appState"
+                         [showUploadIcon]="uploadIcon"
                          (onSendText)="sendText($event, appState.showEmojiPanel)"
                          (toggleEmojiPanel)="toggleEmojiPanel()"
                          (showUploadPanel)="showUploadPanel()"
