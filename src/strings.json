@@ -2262,6 +2262,35 @@
     }
   },
   {
+    "id": "META.VARIABLES.SEND_AREA.MULTI_ATTACHMENT",
+    "values": {
+      "de": {
+        "value": "Dem Besucher erlauben, mehrere Anhänge zu senden",
+        "state": "final"
+      },
+      "en": {
+        "value": "Allow the visitor to send multiple attachment",
+        "state": "final"
+      },
+      "es": {
+        "value": "Permitir al visitante enviar múltiples archivos adjuntos",
+        "state": "final"
+      },
+      "fr": {
+        "value": "Permettre a l’utilisateur d'envoyer plusieurs pièces jointes",
+        "state": "final"
+      },
+      "it": {
+        "value": "Consenti al visitatore di inviare più allegati",
+        "state": "final"
+      },
+      "ja": {
+        "value": "訪問者が複数の添付ファイルを送信できるようにする",
+        "state": "final"
+      }
+    }
+  },
+  {
     "id": "META.VARIABLES.SEND_AREA.SHOW_EMOJI_BUTTON",
     "values": {
       "de": {

@@ -8,9 +8,13 @@ module.exports = (config, options) => {
         cacheDirectory: false,
         presets: [
           ['@babel/env', {
-            targets: [
-              "ie 11"
-            ]
+            targets: {
+              "browsers": [
+                "last 2 Chrome versions",
+                "last 2 Firefox versions",
+                "last 2 safari versions"
+              ]
+            }
           }]
         ]
       }
