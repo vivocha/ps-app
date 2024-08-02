@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VvcInteractionService, Dimension, UiState} from '@vivocha/client-interaction-core';
 import {ChatAreaComponent} from '@vivocha/client-interaction-layout';
 import {Observable, Subscription} from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 interface Dimensions {
   [key: string]: Dimension;
@@ -103,7 +104,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.appState$ = this.interactionService.getState();
     this.interactionService.init().subscribe(context => this.setInitialDimensions(context));
     this.interactionService.events().subscribe(evt => this.listenForEvents(evt));
-    this.loadActiveAgent();  // Load the active agent details (if any).
     this.registerCustomActions(); // Register custom actions provided by either a bot or an interaction script.
 
     // listen to uiState changes in order to update the local reference used in services
@@ -430,49 +430,27 @@ export class AppComponent implements OnInit, OnDestroy {
     return isChatVisible && isChatBoxVisible && !this.isHideChatBoxMessage(lastMessage);
   }
   /**
-   * Load the active agent details on page refresh and/or app maximize (if any).
-   */
-  loadActiveAgent() {
-    if (!!sessionStorage.getItem('agent')) {
-      const agent = JSON.parse(sessionStorage.getItem('agent'));
-      if (!!agent.avatar) {
-        this.agent.avatar = agent.avatar;
-      }
-      if (!!agent.nickname) {
-        this.agent.nickname = agent.nickname;
-      }
-      if (!!agent.status) {
-        this.agent.status = agent.status;
-      }
-    }
-  }
-  /**
-   * Register the `action` event for subscribing to custom actions based on the `action_code` key.
+   * Register the `rawmessage` observable for subscribing to custom actions based on the `action_code` key.
    */
   registerCustomActions() {
     this.interactionService
-      .registerCustomAction({ id: 'action' })
-      .subscribe(action_code => {
-        if (!!action_code) {
-          switch (action_code) {
+      .registerCustomAction({ id: 'rawmessage' })
+      .pipe(filter(message => message.type === 'action' && !!message.args))
+      .subscribe(message => {
+        if (!!message.action_code) {
+          switch (message.action_code) {
             case 'setAgent': {
-              window.addEventListener('message', event => {
-                if (!!event.data && (event.data.avatar || event.data.nickname || event.data.status)) {
-                  const agent = event.data;
-                  let item: any = {};
-                  if (!!agent.avatar) {
-                    Object.assign(item, { avatar: agent.avatar });
-                  }
-                  if (!!agent.nickname) {
-                    Object.assign(item, { nickname: agent.nickname });
-                  }
-                  if (!!agent.status) {
-                    Object.assign(item, { status: agent.status });
-                  }
-                  sessionStorage.setItem('agent', JSON.stringify(item));
-                  this.loadActiveAgent();
+              if (!!message.args && (message.args[0].avatar || message.args[0].nickname || message.args[0].status)) {;
+                if (!!message.args[0].avatar) {
+                  this.agent.avatar = message.args[0].avatar;
                 }
-              }, true);
+                if (!!message.args[0].nickname) {
+                  this.agent.nickname = message.args[0].nickname;
+                }
+                if (!!message.args[0].status) {
+                  this.agent.status = message.args[0].status;
+                }
+              }
               break;
             }
             default: {
