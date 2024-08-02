@@ -456,6 +456,7 @@ export class AppComponent implements OnInit, OnDestroy {
             }
             case 'showUploadIcon': {
               this.uploadIcon = message.args[0].show;
+              break;
             }
             default: {
               console.info('No case found.');
