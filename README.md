@@ -6,6 +6,7 @@
   - [Adobe After Effects Support](#adobe-after-effecs-support)
   - [Custom Actions](#custom-actions)
     - [Set Agent](#set-agent)
+    - [Upload Icon](#upload-icon)
 
 ## Features
 
@@ -62,3 +63,5 @@ You should send a message like the following.
 ```
 
 All of the keys are of type `string` and the `avatar` key must be a valid image URL.
+
+#### Upload Icon
