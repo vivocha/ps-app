@@ -85,7 +85,7 @@ response.messages = [
 ];
 ```
 
-…to enable the icon (by default it’s hidden) and a message like the following…
+…to show the icon (by default it’s hidden) and a message like the following…
 
 ```javascript
 response.messages = [
