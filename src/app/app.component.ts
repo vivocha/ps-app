@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VvcInteractionService, Dimension, UiState} from '@vivocha/client-interaction-core';
 import {ChatAreaComponent} from '@vivocha/client-interaction-layout';
-import {Observable, Subscription} from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 interface Dimensions {
@@ -96,7 +96,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public selector: string | null = null;
 
-  public agent: any = {};
+  public agent: any = {}; // Set agent details when using Rocket.Chat.
+  public uploadIcon: boolean; // Set the upload icon visibility.
 
   constructor(private interactionService: VvcInteractionService) {}
 
@@ -430,7 +431,7 @@ export class AppComponent implements OnInit, OnDestroy {
     return isChatVisible && isChatBoxVisible && !this.isHideChatBoxMessage(lastMessage);
   }
   /**
-   * Register the `rawmessage` observable for subscribing to custom actions based on the `action_code` key.
+   * Register the `rawmessage` observable for subscribing to several custom actions based on the `action_code` key.
    */
   registerCustomActions() {
     this.interactionService
@@ -453,6 +454,8 @@ export class AppComponent implements OnInit, OnDestroy {
               }
               break;
             }
+            case 'showUploadIcon':
+
             default: {
               console.info('No case found.');
             }

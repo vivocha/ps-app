@@ -44,7 +44,7 @@ Please, compile the [lastminute](https://github.com/vivocha/ps-app/tree/lastminu
 
 This custom action has been developed for **Smile.CX Gaia** to let [Rocket.Chat](https://www.rocket.chat/) change the agent details via Vivocha Bot SDK.
 
-You should send a message like the following:
+You should send a message like the following.
 
 ```javascript
 {
