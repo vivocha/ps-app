@@ -4,6 +4,7 @@
   - [Hide Text Input](#hide-text-input)
   - [Reactive Buttons On Templates](#reactive-buttons-on-templates)
   - [Adobe After Effects Support](#adobe-after-effecs-support)
+  - [System Template Message](#system-template-message)
   - [Custom Actions](#custom-actions)
     - [Set Agent](#set-agent)
     - [Upload Icon](#upload-icon)
@@ -38,6 +39,31 @@ This feature makes buttons on both generic and list templates reactive to run th
 This feature has been developed for lastminute.com and adds support for Adobe After Effects animation exported in JSON via Lottie: a library created and maintained by Airbnb.
 
 Please, compile the [lastminute](https://github.com/vivocha/ps-app/tree/lastminute) branch to get it working as expected by the customer.
+
+### System Template Message
+
+This feature lets you send system messages introducing a custom template.
+
+You should send a message like the following.
+
+```javascript
+response.messages = [
+  {
+    code: 'message',
+    type: 'text',
+    template: {
+      type: 'system',
+      elements: [
+        {
+          body: 'Your system message goes here'
+        }
+      ]
+    }
+  } as any
+];
+```
+
+Please, notice that if you don’t include `as any` it will return a TypeScript error. 
 
 ### Custom Actions
 

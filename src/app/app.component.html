@@ -95,6 +95,7 @@
             <vvc-template-list [message]="m" *ngIf="m.type === 'template' && m.template === 'list'"
                                (action)="processAction($event)"
                                (read)="markRead($event)"></vvc-template-list>
+            <vvc-template-system [message]="m" *ngIf="m.type === 'template' && m.template === 'system'"></vvc-template-system>
           </div>
         </div>
 

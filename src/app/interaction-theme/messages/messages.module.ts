@@ -8,6 +8,7 @@ import { SystemMessageComponent } from './system-message/system-message.componen
 import { TemplateGenericComponent } from './template-generic/template-generic.component';
 import { QuickRepliesComponent } from './quick-replies/quick-replies.component';
 import { TemplateListComponent } from './template-list/template-list.component';
+import { TemplateSystemComponent } from './template-system/template-system.component';
 import { RequestMessageComponent } from './request-message/request-message.component';
 import { LinkMessageComponent } from './link-message/link-message.component';
 import { VvcLinkPipe } from './vvc-link.pipe';
@@ -18,6 +19,7 @@ const components = [
   SystemMessageComponent,
   TemplateGenericComponent,
   TemplateListComponent,
+  TemplateSystemComponent,
   QuickRepliesComponent,
   RequestMessageComponent,
   LinkMessageComponent,
