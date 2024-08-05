@@ -64,6 +64,23 @@ You should send a message like the following.
 
 All of the keys are of type `string` and the `avatar` key must be a valid image URL.
 
+If you want to restore the Campaign Builder defaults, just send a message like the following.
+
+```javascript
+{
+  code: 'message',
+  type: 'action',
+  action_code: 'setAgent',
+  args: [
+    {
+      avatar: 0,
+      nickname: 0,
+      status: 0
+    }
+  ]
+} as ActionMessage
+```
+
 #### Upload Icon
 
 This custom action has been developed for **Smile.CX Gaia** to let it choose wether showing the upload icon or not.

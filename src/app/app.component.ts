@@ -436,21 +436,23 @@ export class AppComponent implements OnInit, OnDestroy {
   registerCustomActions() {
     this.interactionService
       .registerCustomAction({ id: 'rawmessage' })
-      .pipe(filter(message => message.type === 'action' && !!message.args))
+      .pipe(filter(message => message.type === 'action' && message.args))
       .subscribe(message => {
         if (!!message.action_code) {
           switch (message.action_code) {
             case 'setAgent': {
-              if (!!message.args && (message.args[0].avatar || message.args[0].nickname || message.args[0].status)) {;
+              if (!!message.args && (!!message.args[0].avatar || !!message.args[0].nickname || !!message.args[0].status)) {
                 if (!!message.args[0].avatar) {
-                  this.agent.avatar = message.args[0].avatar === 0 ? undefined : message.args[0].avatar;
+                  this.agent.avatar = message.args[0].avatar;
                 }
                 if (!!message.args[0].nickname) {
-                  this.agent.avatar = message.args[0].nickname === 0 ? undefined : message.args[0].nickname;
+                  this.agent.nickname = message.args[0].nickname;
                 }
                 if (!!message.args[0].status) {
-                  this.agent.avatar = message.args[0].status === 0 ? undefined : message.args[0].status;
+                  this.agent.status = message.args[0].status;
                 }
+              } else {
+                this.agent = {};
               }
               break;
             }
