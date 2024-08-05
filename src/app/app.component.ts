@@ -170,6 +170,7 @@ export class AppComponent implements OnInit, OnDestroy {
       case 'close-and-stay':
         this.dismissCloseModal();
         this.closeModalVisible = true;
+        // TODO: @fmoretti - Remove pointer-events from buttons and quick replies.
         this.interactionService.closeContact(this.closeDimensions);
         break;
       case 'close-and-remove':

@@ -5,12 +5,11 @@
   </div>
   <div class="message"
        [ngClass]="{ 'arrow' : message.isFirst }">
-    <div *ngIf="!message.meta && (!message.isAgent || (message.isAgent && !message.agent.is_bot))"
-          class="bubble">{{ message.text | vvcLink:{sanitizeHtml: true} }}
-        <div class="timestamp">{{ message.time }}</div></div>
-    <div *ngIf="!message.meta && message.isAgent && message.agent.is_bot"
-          class="bubble">{{ message.text | vvcLink }}
-        <div class="timestamp">{{ message.time }}</div></div>
+    <div class="bubble">
+      <div *ngIf="!message.meta && (!message.isAgent || (message.isAgent && !message.agent.is_bot))" [innerHTML]="message.text | vvcLink:{sanitizeHtml: true}"></div>
+      <div *ngIf="!message.meta && message.isAgent && message.agent.is_bot" [innerHTML]="message.text | vvcLink"></div>
+      <div class="timestamp">{{ message.time }}</div>
+    </div>
     <div *ngIf="message.meta" class="bubble attachment" (click)="openDocument(message.meta.url)">
       <div class="attachment-img" *ngIf="message.meta.mimetype.indexOf('image/') !== -1">
         <img [src]="message.meta.url">
@@ -21,7 +20,7 @@
         </svg>
       </div>
       <div class="attachment-text">
-        {{ message.text || message.meta.desc}}
+        {{ message.text || message.meta.desc }}
       </div>
     </div>
     <div class="time" *ngIf="message.isLast">
