@@ -171,6 +171,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.dismissCloseModal();
         this.closeModalVisible = true;
         // TODO: @fmoretti - Remove pointer-events from buttons and quick replies.
+        this.removePointerEvents();
         this.interactionService.closeContact(this.closeDimensions);
         break;
       case 'close-and-remove':
@@ -467,5 +468,16 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         }
       });
+  }
+  /**
+   * Disable pointer events on buttons to make them not clickable after closing the chat with visible messages.
+   */
+  removePointerEvents() {
+    const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      if (!button.classList.contains('web_url')) {
+        button.style.pointerEvents = 'none';
+      }
+    });
   }
 }
