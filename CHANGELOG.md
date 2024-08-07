@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.11.0](https://github.com/vivocha/vvc-app/compare/@vivocha/client-interaction@7.10.10...@vivocha/client-interaction@7.11.0) (2024-08-07)
+
+
+### Features
+
+* allow visitor to send multiple files ([245b386](https://github.com/vivocha/vvc-app/commit/245b386e9f17474ea16279bab2c4624fe4fbd8d2))
+
+
+
+
+
 ## [7.10.10](https://github.com/vivocha/vvc-app/compare/@vivocha/client-interaction@7.10.9...@vivocha/client-interaction@7.10.10) (2024-01-18)
 
 **Note:** Version bump only for package @vivocha/client-interaction
