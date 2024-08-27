@@ -6,7 +6,7 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatIsWritingComponent{
-
+  @Input() agent;
   @Input() context;
 
 }
