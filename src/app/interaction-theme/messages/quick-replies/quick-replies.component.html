@@ -1,11 +1,4 @@
 <div #qrMsg class="vvc-quick-replies" [ngClass]="{'horizontal': message.quick_replies_orientation !== 'vertical', 'vertical': message.quick_replies_orientation === 'vertical'}">
-  <div class="chat-message agent">
-    <div class="message">
-      <div class="bubble">
-        {{ message.body }}
-      </div>
-    </div>
-  </div>
     <div #qrContainer class="qr-buttons"
        [scrollLeft]="scrollOffset || 0"
        [style.scroll-behavior]="transition"

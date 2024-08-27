@@ -13,7 +13,20 @@
 
 ### Hide Text Input
 
-This feature hides the text input if no free text is allowed. It’s enabled by default with quick replies and can be configured in templates.
+This feature hides the text input if no free text is allowed. It can be configured in quick replies as follows:
+
+```javascript
+{
+  code: 'message',
+  type: 'text',
+  body: 'hide_text_input',
+  quick_replies: [
+    ...
+  ]
+} as TextMessage
+```
+
+…and in templates as follows:
 
 ```javascript
 {
