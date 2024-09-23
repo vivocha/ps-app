@@ -77,7 +77,7 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
     margin: 0 auto;
     width: 208px;
     height: 40px;
-    
+
     display: flex;
     justify-content: space-evenly;
     flex-direction: row-reverse;
@@ -570,7 +570,7 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
       &.vvc-checkbox{
         display: flex;
         align-items: center;
-        
+
         input{
           flex: 0.2;
           width: auto;
@@ -1221,18 +1221,23 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
     }
   }
 }
-@mixin chat-arrow($orientation: 'left', $showArrow: true, $background: $color1, $borderColor: $color1){
+@mixin chat-arrow($orientation: 'left', $showArrow: true, $background: $color1, $borderColor: $color1, $alignAvatar: 'top'){
   position: relative;
   &.arrow {
     &:before {
       content: "";
       position: absolute;
       width: 0;
+      @if ($alignAvatar == 'top'){
+        top: 15px;
+      }
+      @if ($alignAvatar == 'bottom'){
+        bottom: 26px;
+      }
       @if ($showArrow == false) {
         display: none;
       }
       @if ($orientation == 'right'){
-        top: 9px;
         right: 0;
         border-left: 8px solid $borderColor;
         border-top: 8px solid transparent;
@@ -1240,7 +1245,6 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
       }
 
       @if ($orientation == 'left'){
-        top: 15px;
         left: 0;
         border-right: 8px solid $background;
         border-top: 8px solid transparent;
@@ -1251,18 +1255,22 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
       content: "";
       position: absolute;
       width: 0;
+      @if ($alignAvatar == 'top'){
+        top: 17px;
+      }
+      @if ($alignAvatar == 'bottom'){
+        bottom: 28px;
+      }
       @if ($showArrow == false) {
         display: none;
       }
       @if ($orientation == 'right'){
-        top: 11px;
         right:2px;
         border-left: 6px solid $background;
         border-top: 6px solid transparent;
         border-bottom: 6px solid transparent;
       }
       @if ($orientation == 'left'){
-        top: 17px;
         left:2px;
         border-right: 6px solid $borderColor;
         border-top: 6px solid transparent;
@@ -1271,7 +1279,7 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
     }
   }
 }
-@mixin chat-message($fontSize: 16px, $timeSize: 12px, $timeColor: #727273){
+@mixin chat-message($fontSize: 16px, $timeSize: 12px, $timeColor: #727273, $alignAvatar: $agentBalloonAvatarAlignment){
   .chat-message{
     padding: 1px 4px;
     flex: none;
@@ -1324,6 +1332,10 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
     .message-avatar{
       flex: none;
       padding: 0 5px;
+      @if ($alignAvatar == 'bottom'){
+        align-self: flex-end;
+        padding-bottom: 24px;
+      }
       img {
         width: 30px;
         height: 30px;
@@ -1339,7 +1351,7 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
         height: 30px;
         border-radius: 50%;
         position: relative;
-        top: 1px;
+        top: 4px;
         display: block;
       }
     }
@@ -1348,7 +1360,7 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
     }
   }
 }
-@mixin chat-visitor-message($background: $visitorBalloonColor, $color: #333333, $radius: 6px, $borderColor: #E6E6E6, $showAvatar: $showVisitorAvatar, $showArrow: $showVisitorBalloonArrow, $showAcks: $showAcks){
+@mixin chat-visitor-message($background: $visitorBalloonColor, $color: #333333, $radius: 6px, $borderColor: #E6E6E6, $showAvatar: $showVisitorAvatar, $showArrow: $showVisitorBalloonArrow, $showAcks: $showAcks, $alignAvatar: $agentBalloonAvatarAlignment){
   .chat-message{
     &.visitor{
       .message-avatar{
@@ -1357,10 +1369,10 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
         }
       }
       .message{
-        @include chat-arrow('right', $showArrow, $background, $borderColor);
+        @include chat-arrow('right', $showArrow, $background, $borderColor, $alignAvatar);
       }
       .bubble {
-        padding: 6px;
+        padding: 13px 12px;
         margin-right: 8px;
         margin-left: 50px;
         border: 1px solid $borderColor;
@@ -1472,7 +1484,7 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
   }
   */
 }
-@mixin chat-agent-message($background: $color1, $color: #FFFFFF, $radius: 6px, $borderColor: $color1, $showAvatar: $showAgentAvatar, $showArrow: $showAgentBalloonArrow){
+@mixin chat-agent-message($background: $color1, $color: #FFFFFF, $radius: 6px, $borderColor: $color1, $showAvatar: $showAgentAvatar, $showArrow: $showAgentBalloonArrow, $alignAvatar: $agentBalloonAvatarAlignment){
 
   .chat-message{
     &.agent{
@@ -1482,7 +1494,7 @@ $icon-survey-smile-off: './assets/static/icons/smile-off.png';
         }
       }
       .message{
-        @include chat-arrow('left', $showArrow, $background, $borderColor);
+        @include chat-arrow('left', $showArrow, $background, $borderColor, $alignAvatar);
       }
       .bubble {
         @include chat-agent-bubble($background, $color, $radius, $borderColor, $showAvatar, $showArrow);
@@ -2158,7 +2170,7 @@ body, input, textarea{ font-family: $appFontFamily; }
     height: 100%;
     width: 100%;
   }
-  &.mobile{ 
+  &.mobile{
     #vvc-normal-container{
       #vvc-chat{
         #vvc-messages{

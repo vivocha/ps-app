@@ -77,7 +77,7 @@
             <vvc-link-message [message]="m" *ngIf="m.type === 'link'"
                               (linkClicked)="openAttachment($event, true)"></vvc-link-message>
             <vvc-chat-message [message]="m" *ngIf="m.type === 'chat'"
-                              [agent]="agent"
+                              [disableMessageGrouping]="disableMessageGrouping"
                               (read)="markRead($event)"
                               (resend)="sendFailed($event)"
                               (showDoc)="openAttachment($event, true)"></vvc-chat-message>
@@ -85,6 +85,9 @@
                                  (accept)="acceptAgentRequest($event)"
                                  (reject)="rejectAgentRequest($event)"></vvc-request-message>
             <vvc-quick-replies [message]="m" *ngIf="m.type === 'quick-replies'"
+                               [showQuickRepliesAsBalloon]="showQuickRepliesAsBalloon"
+                               [noInteractionMode]="quickRepliesNoInteractionMode"
+                               [hideQuickRepliesBodyWhenEmpty]="hideQuickRepliesBodyWhenEmpty"
                                (read)="markRead($event)"
                                (scrollUpdate)="updateLeftScrollOffset($event)"
                                (action)="processQuickReply($event)"></vvc-quick-replies>
