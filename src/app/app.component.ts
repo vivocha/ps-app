@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VvcInteractionService, Dimension, UiState} from '@vivocha/client-interaction-core';
 import {ChatAreaComponent} from '@vivocha/client-interaction-layout';
 import {Observable, Subscription} from 'rxjs';
+import {filter} from 'rxjs/operators';
 
 interface Dimensions {
   [key: string]: Dimension;

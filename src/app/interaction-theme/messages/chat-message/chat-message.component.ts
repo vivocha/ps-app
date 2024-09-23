@@ -9,7 +9,7 @@ import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 export class ChatMessageComponent implements OnInit {
 
   @Input() message;
-  @Input() agent;
+  @Input() disableMessageGrouping;
   @Output() showDoc = new EventEmitter();
   @Output() read = new EventEmitter();
   @Output() resend = new EventEmitter();
@@ -27,6 +27,9 @@ export class ChatMessageComponent implements OnInit {
   private msgElement: HTMLDivElement;
   private listElement: HTMLDivElement;
 
+  isFirst = false;
+  isLast = false;
+
   previewTipe;
 
   markRead(){
@@ -39,6 +42,9 @@ export class ChatMessageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isFirst = this.disableMessageGrouping ? true : this.message.isFirst;
+    this.isLast = this.disableMessageGrouping ? true : this.message.isLast;
+
     if(this.message.meta && this.message.meta.mimetype){
       this.previewTipe = 'preview_' + this.message.meta.mimetype.split("/")[0];
     }

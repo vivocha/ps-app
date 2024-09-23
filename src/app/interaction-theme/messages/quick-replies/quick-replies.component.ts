@@ -11,6 +11,9 @@ import {
 export class QuickRepliesComponent implements OnInit, OnDestroy {
 
   @Input() message;
+  @Input() showQuickRepliesAsBalloon;
+  @Input() noInteractionMode;
+  @Input() hideQuickRepliesBodyWhenEmpty;
   @Output() action = new EventEmitter();
   @Output() scrollUpdate = new EventEmitter();
   @Output() read = new EventEmitter();
@@ -20,6 +23,8 @@ export class QuickRepliesComponent implements OnInit, OnDestroy {
 
   scrollOffset = 0;
   transition = 'none';
+
+  castedMessage;
 
   private msgElement: HTMLDivElement;
   private listElement: HTMLDivElement;
@@ -35,6 +40,7 @@ export class QuickRepliesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.message) {
+      this.castedMessage = {...this.message, text: this.message.body, isAgent: true};
       this.scrollOffset = this.message.scrollLeft;
       this.transition = 'smooth';
     }
@@ -116,5 +122,8 @@ export class QuickRepliesComponent implements OnInit, OnDestroy {
   scrollLeft() {
     this.scrollOffset = this.scrollOffset - 200;
   }
-
+  canShowButtons() {
+    if (this.message && this.message.no_quick_replies_interaction && this.noInteractionMode === 'remove_buttons') return false;
+    return !this.message.replied;
+  }
 }

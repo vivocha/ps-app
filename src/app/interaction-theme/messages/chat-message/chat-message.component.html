@@ -1,10 +1,10 @@
 <div #chatMsg class="chat-message" [ngClass]="{ 'agent': message.isAgent, 'visitor': !message.isAgent, 'bot': message.isAgent && message.agent.is_bot, 'real_agent': message.isAgent && !message.agent.is_bot }">
   <div class="message-spacer" *ngIf="!message.isAgent"></div>
-  <div class="message-avatar" *ngIf="message.isAgent && (agent.avatar || message.avatar || message.agent && message.agent.avatar)" [style.visibility]="message.isFirst ? 'visible' : 'hidden'">
-    <img [src]="agent.avatar || message.avatar || message.agent.avatar">
+  <div class="message-avatar" *ngIf="message.isAgent && (message.avatar || message.agent && message.agent.avatar)" [style.visibility]="isFirst ? 'visible' : 'hidden'">
+    <img [src]="message.avatar || message.agent.avatar">
   </div>
   <div class="message"
-       [ngClass]="{ 'arrow' : message.isFirst }">
+       [ngClass]="{ 'arrow' : isFirst }">
     <div *ngIf="!message.meta && (!message.isAgent || (message.isAgent && !message.agent.is_bot))"
           class="bubble"
           [innerHTML]="message.text | vvcLink:{sanitizeHtml: true}"></div>
@@ -24,7 +24,7 @@
         {{ message.text || message.meta.desc}}
       </div>
     </div>
-    <div class="time" *ngIf="message.isLast">
+    <div class="time" *ngIf="isLast">
       <span class="msg-warnings" *ngIf="message.failed" (click)="sendFailed()">
         <svg height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" transform="translate(-438 -224)"><path d="m0 0h908v900h-908z" fill="#fff"/><path d="m5.77639233 1.67083605c.22934693-.11467403.50469266-.03654433.64173472.17295535l.02908611.05065013 4.19100574 8.38197037c.0347141.069428.0527868.1459848.0527868.2236077 0 .2564179-.1930201.4677536-.4416894.4966361l-.0583106.0033639h-8.38201143c-.07762288 0-.15417973-.0180727-.22360768-.0527868-.22934693-.1146741-.33204956-.3818289-.24667413-.617162l.02306865-.0536589 4.19100573-8.38197037c.04838174-.09676301.12684248-.17522374.22360549-.22360548zm.22360767 1.57916395-3.5 6.7500196h7zm0 5.25c.27614238 0 .5.22385762.5.5 0 .27614237-.22385762.5-.5.5-.27614237 0-.5-.22385763-.5-.5 0-.27614238.22385763-.5.5-.5zm0-3.5c.27614238 0 .5.22385762.5.5v2c0 .27614237-.22385762.5-.5.5-.27614237 0-.5-.22385763-.5-.5v-2c0-.27614238.22385763-.5.5-.5z" fill="#e55e3b" fill-rule="nonzero" transform="translate(438 224)"/></g></svg>
       </span>
@@ -42,7 +42,7 @@
        {{ message.time }}
     </div>
   </div>
-  <div class="message-avatar" *ngIf="!message.isAgent" [style.visibility]="message.isFirst ? 'visible' : 'hidden'">
+  <div class="message-avatar" *ngIf="!message.isAgent" [style.visibility]="isFirst ? 'visible' : 'hidden'">
     <div class="message-visitor"></div>
   </div>
   <div class="message-spacer" *ngIf="message.isAgent"></div>
