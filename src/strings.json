@@ -493,6 +493,35 @@
     }
   },
   {
+    "id": "META.GROUPS.DimensionAndPosition",
+    "values": {
+      "de": {
+        "value": "Größe und Positionierung",
+        "state": "new"
+      },
+      "en": {
+        "value": "Size and positioning",
+        "state": "new"
+      },
+      "es": {
+        "value": "Tamaño y posicionamiento",
+        "state": "new"
+      },
+      "fr": {
+        "value": "Taille et positionnement",
+        "state": "new"
+      },
+      "it": {
+        "value": "Dimensione e posizionamento",
+        "state": "new"
+      },
+      "ja": {
+        "value": "サイズと配置",
+        "state": "new"
+      }
+    }
+  },
+  {
     "id": "META.GROUPS.FilesAndEmoji",
     "values": {
       "de": {
@@ -1711,6 +1740,122 @@
     }
   },
   {
+    "id": "META.VARIABLES.CHAT.BALLOON.AGENT.AVATAR_ALIGNMENT",
+    "values": {
+      "de": {
+        "value": "Agenten-Avatar-Ausrichtung",
+        "state": "new"
+      },
+      "en": {
+        "value": "Agent avatar alignment",
+        "state": "new"
+      },
+      "es": {
+        "value": "Alineación del avatar del agente",
+        "state": "new"
+      },
+      "fr": {
+        "value": "Alignement de l'avatar de l'agent",
+        "state": "new"
+      },
+      "it": {
+        "value": "Allineamento avatar agente",
+        "state": "new"
+      },
+      "ja": {
+        "value": "エージェントのアバターの配置",
+        "state": "new"
+      }
+    }
+  },
+  {
+    "id": "META.VARIABLES.CHAT.SHOW_QUICK_REPLIES_AS_BALLOON",
+    "values": {
+      "de": {
+        "value": "Zeige Schnellantworten wie eine normale Nachricht an",
+        "state": "new"
+      },
+      "en": {
+        "value": "Display Quick Replies as a normal message",
+        "state": "new"
+      },
+      "es": {
+        "value": "Mostrar respuestas rápidas como un mensaje normal",
+        "state": "new"
+      },
+      "fr": {
+        "value": "Afficher les réponses rapides comme un message normal",
+        "state": "new"
+      },
+      "it": {
+        "value": "Visualizza Quick Replies come un messaggio normale",
+        "state": "new"
+      },
+      "ja": {
+        "value": "クイック返信を通常のメッセージとして表示する",
+        "state": "new"
+      }
+    }
+  },
+  {
+    "id": "META.VARIABLES.CHAT.HIDE_QUICK_REPLIES_BODY_WHEN_EMPTY",
+    "values": {
+      "de": {
+        "value": "Entferne den Körper der Schnellantworten, wenn er leer ist",
+        "state": "new"
+      },
+      "en": {
+        "value": "Remove the body of quick replies when it is empty",
+        "state": "new"
+      },
+      "es": {
+        "value": "Eliminar el cuerpo de las respuestas rápidas cuando esté vacío",
+        "state": "new"
+      },
+      "fr": {
+        "value": "Supprimer le corps des réponses rapides lorsqu'il est vide",
+        "state": "new"
+      },
+      "it": {
+        "value": "Rimuovi il corpo delle quick replies quando è vuoto",
+        "state": "new"
+      },
+      "ja": {
+        "value": "クイック返信の本文が空の場合は削除する",
+        "state": "new"
+      }
+    }
+  },
+  {
+    "id": "META.VARIABLES.CHAT.QUICK_REPLIES_BEHAVIOUR",
+    "values": {
+      "de": {
+        "value": "Verhalten der Schnellantworten, wenn der Besucher auf die Nachricht antwortet, ohne mit ihnen zu interagieren",
+        "state": "new"
+      },
+      "en": {
+        "value": "Behavior of quick replies when the visitor responds to the message without interacting with them",
+        "state": "new"
+      },
+      "es": {
+        "value": "Comportamiento de las respuestas rápidas cuando el visitante responde al mensaje sin interactuar con ellas",
+        "state": "new"
+      },
+      "fr": {
+        "value": "Comportement des réponses rapides lorsque le visiteur répond au message sans interagir avec elles",
+        "state": "new"
+      },
+      "it": {
+        "value": "Comportamento delle quick replies quando il visitatore risponde al messaggio senza interagire su di esse",
+        "state": "new"
+      },
+      "ja": {
+        "value": "訪問者がクイック返信を操作せずにメッセージに返信した場合のクイック返信の動作",
+        "state": "new"
+      }
+    }
+  },
+  {
     "id": "META.VARIABLES.CHAT.BALLOON.AGENT.DEFAULT_AVATAR",
     "values": {
       "de": {
@@ -1794,6 +1939,35 @@
       "ja": {
         "value": "チャット内にエージェントのアバターを表示する",
         "state": "final"
+      }
+    }
+  },
+  {
+    "id": "META.VARIABLES.CHAT.BALLOON.AGENT.SHOW_AVATAR_IN_ALL_MESSAGES",
+    "values": {
+      "de": {
+        "value": "Avatar des Agenten in allen Chatnachrichten anzeigen",
+        "state": "new"
+      },
+      "en": {
+        "value": "Display agent avatar in all chat messages",
+        "state": "new"
+      },
+      "es": {
+        "value": "Mostrar el avatar del agente en todos los mensajes de chat",
+        "state": "new"
+      },
+      "fr": {
+        "value": "Afficher l'avatar de l'agent dans tous les messages de chat",
+        "state": "new"
+      },
+      "it": {
+        "value": "Visualizza avatar dell'agente in tutti i messaggi di chat",
+        "state": "new"
+      },
+      "ja": {
+        "value": "すべてのチャットメッセージにエージェントのアバターを表示する",
+        "state": "new"
       }
     }
   },

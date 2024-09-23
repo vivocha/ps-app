@@ -17,7 +17,10 @@ export class AppComponent implements OnInit, OnDestroy {
   @ViewChild(ChatAreaComponent, {static: false}) chat: ChatAreaComponent;
 
   public messages: Array<any>;
-
+  public disableMessageGrouping: boolean = window['VVC_VAR_ASSETS']['showAgentAvatarInAllMessages'];
+  public showQuickRepliesAsBalloon: boolean = window['VVC_VAR_ASSETS']['showQuickRepliesAsBalloon'];
+  public quickRepliesNoInteractionMode = window['VVC_VAR_ASSETS']['quickRepliesBehaviour'];
+  public hideQuickRepliesBodyWhenEmpty = window['VVC_VAR_ASSETS']['hideQuickRepliesBodyWhenEmpty'];
   public appState$: Observable<UiState>;
 
   public closeModalVisible = false;
@@ -402,7 +405,7 @@ export class AppComponent implements OnInit, OnDestroy {
   videoToggle(show) {
     this.interactionService.toggleVideo(show);
   }
-  supportsStorages() { try { 
+  supportsStorages() { try {
     return (!!window.localStorage
       && !!window.sessionStorage
       && typeof localStorage.getItem === 'function'

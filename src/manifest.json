@@ -354,6 +354,15 @@
       ]
     },
     {
+      "id": "showAgentAvatarInAllMessages",
+      "nameId": "META.VARIABLES.CHAT.BALLOON.AGENT.SHOW_AVATAR_IN_ALL_MESSAGES",
+      "defaultValue": false,
+      "type": "boolean",
+      "categoryIds": [
+        "Chat_Balloon_Agent"
+      ]
+    },
+    {
       "id": "showAgentBalloonArrow",
       "nameId": "META.VARIABLES.CHAT.BALLOON.AGENT.SHOW_ARROW",
       "defaultValue": true,
@@ -368,6 +377,51 @@
       "defaultValue": "#0351A1",
       "type": "color",
       "hidden": true,
+      "categoryIds": [
+        "Chat_Balloon_Agent"
+      ]
+    },
+    {
+      "id": "agentBalloonAvatarAlignment",
+      "nameId": "META.VARIABLES.CHAT.BALLOON.AGENT.AVATAR_ALIGNMENT",
+      "defaultValue": "top",
+      "type": "enum",
+      "options": [
+        "top",
+        "bottom"
+      ],
+      "categoryIds": [
+        "Chat_Balloon_Agent"
+      ]
+    },
+    {
+      "id": "showQuickRepliesAsBalloon",
+      "nameId": "META.VARIABLES.CHAT.SHOW_QUICK_REPLIES_AS_BALLOON",
+      "defaultValue": false,
+      "type": "boolean",
+      "categoryIds": [
+        "Chat_Balloon_Agent"
+      ]
+    },
+    {
+      "id": "hideQuickRepliesBodyWhenEmpty",
+      "nameId": "META.VARIABLES.CHAT.HIDE_QUICK_REPLIES_BODY_WHEN_EMPTY",
+      "defaultValue": false,
+      "type": "boolean",
+      "categoryIds": [
+        "Chat_Balloon_Agent"
+      ]
+    },
+    {
+      "id": "quickRepliesBehaviour",
+      "nameId": "META.VARIABLES.CHAT.QUICK_REPLIES_BEHAVIOUR",
+      "defaultValue": "nothing",
+      "type": "enum",
+      "options": [
+        "nothing",
+        "disable_buttons",
+        "remove_buttons"
+      ],
       "categoryIds": [
         "Chat_Balloon_Agent"
       ]
