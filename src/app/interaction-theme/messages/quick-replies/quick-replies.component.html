@@ -1,9 +1,15 @@
 <div #qrMsg class="vvc-quick-replies" [ngClass]="{'horizontal': message.quick_replies_orientation !== 'vertical', 'vertical': message.quick_replies_orientation === 'vertical'}">
-    <div #qrContainer class="qr-buttons"
+  <div *ngIf="!(hideQuickRepliesBodyWhenEmpty && !message.body)">
+      <div *ngIf="!showQuickRepliesAsBalloon" class="reply-message">{{ message.body }}</div>
+      <div *ngIf="showQuickRepliesAsBalloon" class="reply-message-balloon">
+          <vvc-chat-message [message]="castedMessage"></vvc-chat-message>
+      </div>
+  </div>
+  <div #qrContainer class="qr-buttons"
        [scrollLeft]="scrollOffset || 0"
        [style.scroll-behavior]="transition"
        [ngClass]="{'centered':showCentered()}"
-                    *ngIf="!message.replied">
+                    *ngIf="canShowButtons()">
     <div class="tpl-left"
          [ngClass]="{'hasImg': hasImage()}"
          *ngIf="showScrollers()" (click)="scrollLeft()"></div>
@@ -13,7 +19,7 @@
          *ngIf="showScrollers()" (click)="scrollRight()"></div>
 
     <div class="reply" *ngFor="let btn of message.quick_replies" [ngClass]="{ 'img': btn.image_url }">
-      <button (click)="btnClicked(btn)">
+      <button [disabled]="message.no_quick_replies_interaction && noInteractionMode === 'disable_buttons'" (click)="btnClicked(btn)">
         <img *ngIf="btn.image_url" [src]="btn.image_url"> {{ btn.title }}
       </button>
     </div>
