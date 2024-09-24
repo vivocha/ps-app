@@ -24,6 +24,7 @@
 
       <vvc-top-bar [context]="appState"
                    [agent]="agent"
+                   [hideTopControls]="hideTopControls"
                    *ngIf="!appState.cbnMode && !appState.inboundMode"
                    (onMinimize)="minimizeWidget()"
                    (onMaximize)="setFullScreen()"

@@ -4,12 +4,12 @@
     <div id="vvc-top-title">{{ agent.nickname || context.topBarTitle | translate }}</div>
     <div id="vvc-top-subtitle">{{ agent.status || context.topBarSubtitle | translate }}</div>
   </div>
-  <div class="vvc-top-controls" *ngIf="context.canRemoveApp && !context.incomingOffer">
+  <div class="vvc-top-controls" *ngIf="!hideTopControls && context.canRemoveApp && !context.incomingOffer">
     <span (click)="removeApp()">
       <i class="icon icon-vvc-close"></i>
     </span>
   </div>
-  <div class="vvc-top-controls" *ngIf="!hasMenu() && !context.canRemoveApp && !context.incomingOffer">
+  <div class="vvc-top-controls" *ngIf="!hideTopControls && !hasMenu() && !context.canRemoveApp && !context.incomingOffer">
     <span *ngIf="context.canMinimize" (click)="onMinimize.emit()">
       <i class="icon icon-vvc-reduce"></i>
     </span>
@@ -17,7 +17,7 @@
       <i class="icon icon-vvc-close"></i>
     </span>
   </div>
-  <div class="vvc-top-controls" *ngIf="hasMenu() && !context.canRemoveApp && !context.incomingOffer">
+  <div class="vvc-top-controls" *ngIf="!hideTopControls && hasMenu() && !context.canRemoveApp && !context.incomingOffer">
     <span (click)="showMenu()">
       <i class="icon icon-vvc-menu"></i>
     </span>

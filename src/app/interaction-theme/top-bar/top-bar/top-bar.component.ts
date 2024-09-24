@@ -9,6 +9,7 @@ export class TopBarComponent {
 
   @Input() context;
   @Input() agent;
+  @Input() hideTopControls;
   @Output() onMinimize = new EventEmitter();
   @Output() onClose = new EventEmitter();
   @Output() onSurvey = new EventEmitter();

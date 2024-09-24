@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VvcInteractionService, Dimension, UiState} from '@vivocha/client-interaction-core';
 import {ChatAreaComponent} from '@vivocha/client-interaction-layout';
-import { Observable, Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Observable, Subscription, fromEvent } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 interface Dimensions {
   [key: string]: Dimension;
@@ -101,6 +101,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public agent: any = {}; // Set agent details when using Rocket.Chat.
   public uploadIcon: boolean = false; // Set the upload icon visibility, default to `false`.
+  public hideTopControls: boolean = false; // Set the top controls visibility, default to `false`.
 
   constructor(private interactionService: VvcInteractionService) {}
 
@@ -109,6 +110,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.interactionService.init().subscribe(context => this.setInitialDimensions(context));
     this.interactionService.events().subscribe(evt => this.listenForEvents(evt));
     this.registerCustomActions(); // Register custom actions provided by either a bot or an interaction script.
+    this.toggleTopControlsVisibility(); //
 
     // listen to uiState changes in order to update the local reference used in services
     this.appUiStateSub = this.appState$.subscribe(uiState => {
@@ -482,5 +484,17 @@ export class AppComponent implements OnInit, OnDestroy {
         button.style.pointerEvents = 'none';
       }
     });
+  }
+  /**
+   * Hide top controls.
+   */
+  toggleTopControlsVisibility() {
+    fromEvent(window, 'message')
+      .pipe(map((event: MessageEvent) => event.data.hideTopControls))
+      .subscribe(value => {
+        if (!!value) {
+          this.hideTopControls = true;
+        }
+      });
   }
 }
