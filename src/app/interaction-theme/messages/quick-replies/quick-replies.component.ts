@@ -14,6 +14,7 @@ export class QuickRepliesComponent implements OnInit, OnDestroy {
   @Input() showQuickRepliesAsBalloon;
   @Input() noInteractionMode;
   @Input() hideQuickRepliesBodyWhenEmpty;
+  @Input() hideTextInput;
   @Output() action = new EventEmitter();
   @Output() scrollUpdate = new EventEmitter();
   @Output() read = new EventEmitter();

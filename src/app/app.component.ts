@@ -102,6 +102,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public agent: any = {}; // Set agent details when using Rocket.Chat.
   public uploadIcon: boolean = false; // Set the upload icon visibility, default to `false`.
   public hideTopControls: boolean = false; // Set the top controls visibility, default to `false`.
+  public hideTextInput: boolean = false; // Remove the quick reply input when `true`, default to `false`.
 
   constructor(private interactionService: VvcInteractionService) {}
 
@@ -425,7 +426,13 @@ export class AppComponent implements OnInit, OnDestroy {
       return true;
     } else {
       if (!!message.quick_replies) {
-        return !!message.body && message.body === 'hide_text_input' ? true : false;
+        if (message.body && message.body === 'hide_text_input') {
+          this.hideTextInput = true;
+          return true;
+        } else {
+          this.hideTextInput = false;
+          return false;
+        }
       } else if (!!message.template) {
         return !!message.original.hide_text_input;
       } else {
