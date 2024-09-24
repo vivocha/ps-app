@@ -1,7 +1,7 @@
 <div #qrMsg class="vvc-quick-replies" [ngClass]="{'horizontal': message.quick_replies_orientation !== 'vertical', 'vertical': message.quick_replies_orientation === 'vertical'}">
   <div *ngIf="!(hideQuickRepliesBodyWhenEmpty && !message.body)">
-      <div *ngIf="!showQuickRepliesAsBalloon || !hideTextInput" class="reply-message">{{ message.body }}</div>
-      <div *ngIf="showQuickRepliesAsBalloon" class="reply-message-balloon">
+      <div *ngIf="!showQuickRepliesAsBalloon && !hideTextInput" class="reply-message">{{ message.body }}</div>
+      <div *ngIf="showQuickRepliesAsBalloon && !hideTextInput" class="reply-message-balloon">
           <vvc-chat-message [message]="castedMessage"></vvc-chat-message>
       </div>
   </div>
