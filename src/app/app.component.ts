@@ -1,8 +1,11 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VvcInteractionService, Dimension, UiState} from '@vivocha/client-interaction-core';
+import { Message } from '@vivocha/client-interaction-core/lib/store/models.interface';
 import {ChatAreaComponent} from '@vivocha/client-interaction-layout';
+import { TemplateGenericComponent } from '@vivocha/client-interaction-layout/lib/messages/template-generic/template-generic.component';
+import { MessageQuickReply } from '@vivocha/public-entities';
 import { Observable, Subscription, fromEvent } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 interface Dimensions {
   [key: string]: Dimension;
@@ -111,7 +114,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.interactionService.init().subscribe(context => this.setInitialDimensions(context));
     this.interactionService.events().subscribe(evt => this.listenForEvents(evt));
     this.registerCustomActions(); // Register custom actions provided by either a bot or an interaction script.
-    this.toggleTopControlsVisibility(); //
+    this.toggleTopControlsVisibility(); // Toggle top controls visibility via postMessage from the `contact-create` event.
 
     // listen to uiState changes in order to update the local reference used in services
     this.appUiStateSub = this.appState$.subscribe(uiState => {
@@ -421,6 +424,10 @@ export class AppComponent implements OnInit, OnDestroy {
       return false
     };
   }
+
+  /**
+   * Hide chatbox when a specific parameters is received by message.
+   */
   isHideChatBoxMessage(message): boolean {
     if (!message) {
       return true;
@@ -440,10 +447,12 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     }
   }
+
   isChatBoxVisible({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
     const lastMessage = messages.slice().reverse().find(msg => !!msg.agent);
     return isChatVisible && isChatBoxVisible && !this.isHideChatBoxMessage(lastMessage);
   }
+
   /**
    * Register the `rawmessage` observable for subscribing to several custom actions based on the `action_code` key.
    */
@@ -481,6 +490,7 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       });
   }
+
   /**
    * Disable pointer events on buttons to make them not clickable after closing the chat with visible messages.
    */
@@ -492,12 +502,13 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   /**
    * Hide top controls.
    */
   toggleTopControlsVisibility() {
     fromEvent(window, 'message')
-      .pipe(map((event: MessageEvent) => event.data.hideTopControls))
+      .pipe(filter((event: MessageEvent) => 'hideTopControls' in event.data))
       .subscribe(value => {
         if (!!value) {
           this.hideTopControls = true;
