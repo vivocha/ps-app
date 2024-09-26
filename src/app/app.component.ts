@@ -504,7 +504,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Hide top controls.
+   * Hide top controls if a specific postMessage for doing so is received.
    */
   toggleTopControlsVisibility() {
     fromEvent(window, 'message')
