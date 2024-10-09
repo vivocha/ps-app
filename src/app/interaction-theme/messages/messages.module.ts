@@ -12,6 +12,7 @@ import { TemplateSystemComponent } from './template-system/template-system.compo
 import { RequestMessageComponent } from './request-message/request-message.component';
 import { LinkMessageComponent } from './link-message/link-message.component';
 import { VvcLinkPipe } from './vvc-link.pipe';
+import { VvcMaskPipe } from './vvc-mask.pipe';
 import { VvcCommonModule } from './../common/vvc-common.module';
 
 const components = [
@@ -23,7 +24,8 @@ const components = [
   QuickRepliesComponent,
   RequestMessageComponent,
   LinkMessageComponent,
-  VvcLinkPipe
+  VvcLinkPipe,
+  VvcMaskPipe
 ];
 
 @NgModule({

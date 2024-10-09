@@ -6,8 +6,8 @@
   <div class="message"
        [ngClass]="{ 'arrow' : message.isFirst }">
     <div class="bubble">
-      <div *ngIf="!message.meta && (!message.isAgent || (message.isAgent && !message.agent.is_bot))" [innerHTML]="message.text | vvcLink:{sanitizeHtml: true}"></div>
-      <div *ngIf="!message.meta && message.isAgent && message.agent.is_bot" [innerHTML]="message.text | vvcLink"></div>
+      <div *ngIf="!message.meta && (!message.isAgent || (message.isAgent && !message.agent.is_bot))" [innerHTML]="message.text | vvcMask | vvcLink:{sanitizeHtml: true}"></div>
+      <div *ngIf="!message.meta && message.isAgent && message.agent.is_bot" [innerHTML]="message.text | vvcMask | vvcLink"></div>
       <div class="timestamp">{{ message.time }}</div>
     </div>
     <div *ngIf="message.meta" class="bubble attachment" (click)="openDocument(message.meta.url)">
