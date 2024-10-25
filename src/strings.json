@@ -3,27 +3,27 @@
     "id": "DESCRIPTION",
     "values": {
       "de": {
-        "value": "Standard Interaktions-App",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "en": {
-        "value": "Default Interaction App",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "es": {
-        "value": "Aplicación de interacción predeterminada",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "fr": {
-        "value": "Application d’interaction par défaut",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "it": {
-        "value": "Application di interazione di default",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "ja": {
-        "value": "デフォルト対話アプリ",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       }
     }
@@ -2626,27 +2626,27 @@
     "id": "NAME",
     "values": {
       "de": {
-        "value": "Standard",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "en": {
-        "value": "Default",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "es": {
-        "value": "Predeterminado",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "fr": {
-        "value": "Défaut",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "it": {
-        "value": "Default",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       },
       "ja": {
-        "value": "デフォルト",
+        "value": "Interaction App with Quick Reply & Topbar Customization",
         "state": "final"
       }
     }

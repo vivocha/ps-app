@@ -106,6 +106,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public uploadIcon: boolean = false; // Set the upload icon visibility, default to `false`.
   public hideTopControls: boolean = false; // Set the top controls visibility, default to `false`.
   public hideTextInput: boolean = false; // Remove the quick reply input when `true`, default to `false`.
+  public qrHiddenBodyTypes: any = ['hide_text_input'];
 
   constructor(private interactionService: VvcInteractionService) {}
 
@@ -419,10 +420,10 @@ export class AppComponent implements OnInit, OnDestroy {
       && typeof localStorage.removeItem === 'function'
       && typeof sessionStorage.getItem === 'function'
       && typeof sessionStorage.setItem === 'function'
-      && typeof sessionStorage.removeItem === 'function')
-    } catch(e) {
-      return false
-    };
+      && typeof sessionStorage.removeItem === 'function');
+    } catch (e) {
+      return false;
+    }
   }
 
   /**
@@ -448,7 +449,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  isChatBoxVisible({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
+  renderChatBoxArea({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
     const lastMessage = messages.slice().reverse().find(msg => !!msg.agent);
     return isChatVisible && isChatBoxVisible && !this.isHideChatBoxMessage(lastMessage);
   }

@@ -14,6 +14,7 @@ export class QuickRepliesComponent implements OnInit, OnDestroy {
   @Input() showQuickRepliesAsBalloon;
   @Input() noInteractionMode;
   @Input() hideQuickRepliesBodyWhenEmpty;
+  @Input() hiddenBodyTypes;
   @Input() hideTextInput;
   @Output() action = new EventEmitter();
   @Output() scrollUpdate = new EventEmitter();
@@ -126,5 +127,11 @@ export class QuickRepliesComponent implements OnInit, OnDestroy {
   canShowButtons() {
     if (this.message && this.message.no_quick_replies_interaction && this.noInteractionMode === 'remove_buttons') return false;
     return !this.message.replied;
+  }
+
+  isHiddenBody() {
+    const hide = this.hiddenBodyTypes.indexOf(this.message.body) >= 0;
+    console.log(`[lastminute] isHiddenBody ${hide} id=[${this.message.id}]`, this.message.body);
+    return hide;
   }
 }

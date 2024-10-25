@@ -90,6 +90,7 @@
                                [showQuickRepliesAsBalloon]="showQuickRepliesAsBalloon"
                                [noInteractionMode]="quickRepliesNoInteractionMode"
                                [hideQuickRepliesBodyWhenEmpty]="hideQuickRepliesBodyWhenEmpty"
+                               [hiddenBodyTypes] = "qrHiddenBodyTypes"
                                [hideTextInput]="hideTextInput"
                                (read)="markRead($event)"
                                (scrollUpdate)="updateLeftScrollOffset($event)"
@@ -105,7 +106,7 @@
           </div>
         </div>
 
-        <div class="vvc-chat-box-area" *ngIf="isChatBoxVisible(appState)">
+        <div class="vvc-chat-box-area" *ngIf="renderChatBoxArea(appState)">
           <vvc-chat-area #chat
                          [readonly]="appState.isSendAreaDisabled"
                          [context]="appState"
