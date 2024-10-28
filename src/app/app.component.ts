@@ -117,6 +117,19 @@ export class AppComponent implements OnInit, OnDestroy {
     this.registerCustomActions(); // Register custom actions provided by either a bot or an interaction script.
     this.toggleTopControlsVisibility(); // Toggle top controls visibility via postMessage from the `contact-create` event.
 
+    const agent = JSON.parse(sessionStorage.getItem('vvc_agent'));
+
+    /**
+     * Restore agent details on refresh, maximaze, and persistence.
+     */
+    if (!!agent) {
+      this.agent.avatar = agent[0].avatar;
+      this.agent.nickname = agent[0].nickname;
+      this.agent.status = agent[0].status;
+    } else {
+      this.agent = {};
+    }
+
     // listen to uiState changes in order to update the local reference used in services
     this.appUiStateSub = this.appState$.subscribe(uiState => {
       this.interactionService.setUiState(uiState);
@@ -475,8 +488,10 @@ export class AppComponent implements OnInit, OnDestroy {
                 if (!!message.args[0].status) {
                   this.agent.status = message.args[0].status;
                 }
+                sessionStorage.setItem('vvc_agent', JSON.stringify(message.args));
               } else {
                 this.agent = {};
+                sessionStorage.removeItem('vvc_agent');
               }
               break;
             }
