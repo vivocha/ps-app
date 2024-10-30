@@ -9,7 +9,6 @@ import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 export class ChatMessageComponent implements OnInit {
 
   @Input() message;
-  @Input() agent;
   @Input() disableMessageGrouping;
   @Output() showDoc = new EventEmitter();
   @Output() read = new EventEmitter();

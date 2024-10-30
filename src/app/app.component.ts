@@ -157,8 +157,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.interactionService.askForVoiceUpgrade();
   }
   closeApp() {
+    sessionStorage.removeItem('vvc_agent'); // Remove the active agent details on app close.
     this.interactionService.closeApp();
-    sessionStorage.removeItem('agent'); // Remove the active agent details on app close.
   }
   closeCbn() {
     this.interactionService.closeContact(this.closeDimensions);
@@ -169,6 +169,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.closeApp();
   }
   closeContact(context) {
+    sessionStorage.removeItem('vvc_agent'); // Remove the active agent details on contact close.
     const step = this.getCloseStep(context);
     this.interactionService.track('close-contact', step);
     // console.log('CLOSE CONTACT', step, context.variables, context);
@@ -224,6 +225,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.interactionService.maximizeWidget(isFullScreen, (isFullScreen || this.isMobile) ? this.dimensions.fullscreen : this.dimensions.normal);
   }
   getCloseStep(context) {
+    sessionStorage.removeItem('vvc_agent'); // Remove the active agent details on contact close.
     if (!context.contactStarted) {
       return 'remove-app';
     }
