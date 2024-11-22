@@ -1,9 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VvcInteractionService, Dimension, UiState} from '@vivocha/client-interaction-core';
-import { Message } from '@vivocha/client-interaction-core/lib/store/models.interface';
 import {ChatAreaComponent} from '@vivocha/client-interaction-layout';
-import { TemplateGenericComponent } from '@vivocha/client-interaction-layout/lib/messages/template-generic/template-generic.component';
-import { MessageQuickReply } from '@vivocha/public-entities';
 import { Observable, Subscription, fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
