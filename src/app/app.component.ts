@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public showQuickRepliesAsBalloon: boolean = window['VVC_VAR_ASSETS']['showQuickRepliesAsBalloon'];
   public quickRepliesNoInteractionMode = window['VVC_VAR_ASSETS']['quickRepliesBehaviour'];
   public hideQuickRepliesBodyWhenEmpty = window['VVC_VAR_ASSETS']['hideQuickRepliesBodyWhenEmpty'];
+  public preventMobile = window['VVC_VAR_ASSETS']['preventMobile'];
   public appState$: Observable<UiState>;
 
   public closeModalVisible = false;
@@ -142,6 +143,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.interactionService.acceptOffer();
   }
   addChatToFullScreen(show) {
+    if (!!this.preventMobile) {
+      return;
+    }
+
     this.interactionService.addChatToFullScreen(show);
   }
   appendText(text) {
@@ -213,13 +218,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   exitFromFullScreen() {
     this.interactionService.setNormalScreen();
-    if (this.isMobile) {
+    if (this.isMobile && !this.preventMobile) {
       this.interactionService.setDimensions(this.dimensions.fullscreen);
     }
   }
   expandWidget(isFullScreen) {
     this.trackMinizedStatus(false);
-    this.interactionService.maximizeWidget(isFullScreen, (isFullScreen || this.isMobile) ? this.dimensions.fullscreen : this.dimensions.normal);
+    this.interactionService.maximizeWidget(isFullScreen, (isFullScreen || this.isMobile && !this.preventMobile) ? this.dimensions.fullscreen : this.dimensions.normal);
   }
   getCloseStep(context) {
     sessionStorage.removeItem('vvc_agent'); // Remove the active agent details on contact close.
@@ -300,7 +305,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.interactionService.markRead(msgId);
   }
   maximizeCbn(isMobile: boolean, notRead: boolean) {
-    this.interactionService.maximizeWidget(false, isMobile ? this.dimensions.fullscreen : this.dimensions.normal);
+    this.interactionService.maximizeWidget(false, isMobile && !this.preventMobile ? this.dimensions.fullscreen : this.dimensions.normal);
     if (notRead) {
       this.upgradeCbnToChat();
     }
@@ -366,7 +371,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.selector) {
       this.closeDimensions = this.dimensions.embedded;
     } else {
-      this.closeDimensions = context.isMobile ? this.dimensions.fullscreen : this.dimensions.normal;
+      this.closeDimensions = context.isMobile && !this.preventMobile ? this.dimensions.fullscreen : this.dimensions.normal;
     }
     this.interactionService.setDimensions(this.closeDimensions);
 

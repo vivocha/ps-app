@@ -1566,6 +1566,19 @@
     }
   },
   {
+    "id": "META.VARIABLES.APP.PREVENT_MOBILE",
+    "values": {
+      "en": {
+        "value": "Prevents the app from going fullscreen on mobile.",
+        "state": "final"
+      },
+      "it": {
+        "value": "Impedisce all'applicazione di andare a schermo intero sul cellulare.",
+        "state": "final"
+      }
+    }
+  },
+  {
     "id": "META.VARIABLES.APP.PERSISTENCE_MODE",
     "values": {
       "de": {

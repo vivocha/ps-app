@@ -153,6 +153,16 @@
       ]
     },
     {
+      "id": "preventMobile",
+      "nameId": "META.VARIABLES.APP.PREVENT_MOBILE",
+      "defaultValue": false,
+      "type": "boolean",
+      "hidden": false,
+      "categoryIds": [
+        "General_DimensionAndPosition"
+      ]
+    },
+    {
       "id": "askCloseConfirm",
       "nameId": "META.VARIABLES.APP.ASK_CLOSE_CONFIRM",
       "type": "boolean",
