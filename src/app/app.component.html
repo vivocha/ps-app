@@ -101,7 +101,7 @@
           </div>
         </div>
 
-        <div class="vvc-chat-box-area" *ngIf="isChatBoxVisible(appState)">
+        <div class="vvc-chat-box-area" *ngIf="renderChatBoxArea(appState)">
           <vvc-chat-area #chat
                          [readonly]="appState.isSendAreaDisabled"
                          [context]="appState"

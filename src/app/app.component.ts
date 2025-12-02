@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VvcInteractionService, Dimension, UiState} from '@vivocha/client-interaction-core';
+import { BaseMessage, Message } from '@vivocha/client-interaction-core/lib/store/models.interface';
 import {ChatAreaComponent} from '@vivocha/client-interaction-layout';
+import { MessageQuickReply } from '@vivocha/public-entities';
 import {Observable, Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
 
@@ -100,6 +102,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public selector: string | null = null;
 
   public agent: any = {};
+  public hideTextInput: boolean = false; // Remove the quick reply input when `true`, default to `false`.
 
   constructor(private interactionService: VvcInteractionService) {}
 
@@ -415,23 +418,23 @@ export class AppComponent implements OnInit, OnDestroy {
       return false
     };
   }
+
+  /**
+   * Hide chatbox when a quick reply is shown.
+   */
   isHideChatBoxMessage(message): boolean {
-    if (!message) {
+    if (!!message && !!message.quick_replies) {
       return true;
     } else {
-      if (!!message.quick_replies) {
-        return !!message.hide_text_input || true; // TODO: @fmoretti - Remove the key `hide_text_input` from the internal purging mechanism.
-      } else if (!!message.template) {
-        return !!message.original.hide_text_input;
-      } else {
-        return false;
-      }
+      return false;
     }
   }
-  isChatBoxVisible({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
-    const lastMessage = messages.slice().reverse().find(msg => !!msg.agent);
+
+  renderChatBoxArea({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
+    const lastMessage = messages.slice().reverse().find(msg => !!msg.isLast);
     return isChatVisible && isChatBoxVisible && !this.isHideChatBoxMessage(lastMessage);
   }
+
   /**
    * Register the `rawmessage` observable for subscribing to custom actions based on the `action_code` key.
    */
