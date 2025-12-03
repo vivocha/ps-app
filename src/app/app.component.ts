@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VvcInteractionService, Dimension, UiState} from '@vivocha/client-interaction-core';
-import { BaseMessage, Message } from '@vivocha/client-interaction-core/lib/store/models.interface';
 import {ChatAreaComponent} from '@vivocha/client-interaction-layout';
-import { MessageQuickReply } from '@vivocha/public-entities';
+import {Message} from '@vivocha/public-entities';
 import {Observable, Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
 
@@ -15,21 +14,18 @@ interface Dimensions {
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
-
   @ViewChild(ChatAreaComponent, {static: false}) chat: ChatAreaComponent;
 
-  public messages: Array<any>;
+  public messages: Message[];
   public disableMessageGrouping: boolean = window['VVC_VAR_ASSETS']['showAgentAvatarInAllMessages'];
   public showQuickRepliesAsBalloon: boolean = window['VVC_VAR_ASSETS']['showQuickRepliesAsBalloon'];
-  public quickRepliesNoInteractionMode = window['VVC_VAR_ASSETS']['quickRepliesBehaviour'];
-  public hideQuickRepliesBodyWhenEmpty = window['VVC_VAR_ASSETS']['hideQuickRepliesBodyWhenEmpty'];
+  public quickRepliesNoInteractionMode: 'nothing' | 'disable_buttons' | 'remove_buttons' = window['VVC_VAR_ASSETS']['quickRepliesBehaviour'];
+  public hideQuickRepliesBodyWhenEmpty: boolean = window['VVC_VAR_ASSETS']['hideQuickRepliesBodyWhenEmpty'];
   public appState$: Observable<UiState>;
+  public closeModalVisible: boolean = false;
+  public surveyVisible: boolean = false;
 
-  public closeModalVisible = false;
-  public surveyVisible = false;
-
-  private isMobile;
-
+  private isMobile: boolean;
   private dimensions: Dimensions = {
     fullscreen: {
       position: 'fixed',
@@ -94,15 +90,11 @@ export class AppComponent implements OnInit, OnDestroy {
       height: window['VVC_VAR_ASSETS']['initialHeight']
     }
   };
-
   private appUiStateSub: Subscription;
 
   public closeDimensions: Dimension;
-
   public selector: string | null = null;
-
   public agent: any = {};
-  public hideTextInput: boolean = false; // Remove the quick reply input when `true`, default to `false`.
 
   constructor(private interactionService: VvcInteractionService) {}
 
@@ -112,7 +104,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.interactionService.events().subscribe(evt => this.listenForEvents(evt));
     this.registerCustomActions(); // Register custom actions provided by either a bot or an interaction script.
 
-    // listen to uiState changes in order to update the local reference used in services
     this.appUiStateSub = this.appState$.subscribe(uiState => {
       this.interactionService.setUiState(uiState);
     });
@@ -126,10 +117,10 @@ export class AppComponent implements OnInit, OnDestroy {
   acceptOffer() {
     this.interactionService.acceptOffer();
   }
-  addChatToFullScreen(show) {
+  addChatToFullScreen(show: boolean) {
     this.interactionService.addChatToFullScreen(show);
   }
-  appendText(text) {
+  appendText(text: string) {
     this.chat.appendText(text);
   }
   askForVideoUpgrade() {
@@ -418,23 +409,18 @@ export class AppComponent implements OnInit, OnDestroy {
       return false
     };
   }
-
   /**
-   * Hide chatbox when a quick reply is shown.
+   * Hide chatbox whenever a quick reply is shown.
+   * @param message - Last message sent by either an user, an agent, a bot, or a script.
+   * @returns {boolean}
    */
   isHideChatBoxMessage(message): boolean {
-    if (!!message && !!message.quick_replies) {
-      return true;
-    } else {
-      return false;
-    }
+    return (!!message && !!message.quick_replies) ? true : false;
   }
-
   renderChatBoxArea({isChatVisible, isChatBoxVisible, messages}: UiState): boolean {
     const lastMessage = messages.slice().reverse().find(msg => !!msg.isLast);
     return isChatVisible && isChatBoxVisible && !this.isHideChatBoxMessage(lastMessage);
   }
-
   /**
    * Register the `rawmessage` observable for subscribing to custom actions based on the `action_code` key.
    */
@@ -443,7 +429,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .registerCustomAction({ id: 'rawmessage' })
       .pipe(filter(message => message.type === 'action' && !!message.args))
       .subscribe(message => {
-        if (!!message.action_code) {
+        if (!!message && !!message.action_code) {
           switch (message.action_code) {
             case 'setAgent': {
               if (!!message.args && (message.args[0].avatar || message.args[0].nickname || message.args[0].status)) {;
@@ -460,7 +446,7 @@ export class AppComponent implements OnInit, OnDestroy {
               break;
             }
             default: {
-              console.info('No case found.');
+              console.error('❌ No case found.');
             }
           }
         }
